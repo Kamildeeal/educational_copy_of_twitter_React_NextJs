@@ -1,24 +1,36 @@
+.wrapperAll {
+  display: flex;
+  flex-direction: column;
+  background-color: black;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: 100vh;
+}
+
 .container {
   display: flex;
   flex-direction: row;
-  justify-content: space-between; /* Dodane */
+  justify-content: space-between;
   gap: 20px;
   background-color: black;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   color: white;
-  min-height: 100vh;
-  flex: 3;
+  flex-basis: auto;
   align-items: center;
+  height: 780px;
 }
 
 .imageContainer {
   display: flex;
-  width: 600px;
+  max-height: 380px;
+  max-width: 100%;
   flex: 1;
   align-items: center;
   justify-content: center;
+  padding: 32px;
 }
 
 .image {
@@ -27,7 +39,7 @@
 }
 
 .container h1 {
-  font-size: 64px;
+  font-size: 3.2rem;
   overflow-wrap: break-word;
   background-color: rgba(0, 0, 0, 0);
   border: 0px solid black;
@@ -50,7 +62,7 @@
 }
 
 .container h3 {
-  font-size: 31px;
+  font-size: 1.8rem;
   background-color: rgba(0, 0, 0, 0);
   border: 0px solid black;
   box-sizing: border-box;
@@ -77,7 +89,6 @@
   margin-right: 20px;
   cursor: pointer;
   width: 300px;
-
   flex: 0 0 auto;
   border-radius: 9999px;
   border-width: 1px;
@@ -148,7 +159,7 @@
   box-sizing: border-box;
   display: flex;
   pointer-events: auto;
-  font-size: 16px;
+  font-size: 15px;
   color: white;
   direction: ltr;
   font-family: "Roboto-Regular", arial, sans-serif;
@@ -171,11 +182,11 @@
   text-decoration: none;
   white-space: pre-wrap;
   line-height: 1.2;
-  font-size: 12px;
+  font-size: 9px;
 }
 
 .container h4 {
-  font-size: 20px;
+  font-size: 14px;
 }
 
 .buttonLogin {
@@ -211,12 +222,62 @@
 
 .buttonLogin p {
   color: rgb(29, 155, 240);
-  font-size: 18px;
+  font-size: 15px;
   margin: 0px;
-  font-weight: bold;
+  font-weight: 700;
   padding: 0px;
 }
 
 .buttonLogin:hover {
   background-color: rgba(29, 155, 240, 0.1);
+}
+.wrapperAll footer {
+  display: flex;
+  font-size: 13px;
+  color: rgb(62, 65, 68);
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  padding: 12px 16px;
+  flex-basis: auto;
+  align-items: stretch;
+  min-height: 48px;
+  position: relative;
+  background-color: black;
+}
+
+.wrapperAll footer > span {
+  font-size: 10px;
+  margin-left: 14px;
+  background-color: black;
+}
+
+@media only screen and (max-width: 1002px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-items: flex-start;
+  }
+  .imageContainer {
+    display: inline-block;
+    max-height: 6rem;
+    width: 528px;
+    padding-left: 42px;
+    flex: 1;
+  }
+  .image {
+    display: flex;
+    max-height: 40px;
+    max-width: 35px;
+  }
+  .contentContainer {
+    flex: 1 1;
+    max-width: 528px;
+    width: auto;
+    padding-left: 42px;
+  }
+  .h1container {
+    width: stretch;
+    max-width: 528px;
+  }
 }
