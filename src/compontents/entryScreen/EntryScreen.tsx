@@ -1,10 +1,16 @@
-import React from "react";
-// import styles from "@/EntryScreen.module.css";
-// import styles from "./page.module.css";
+"use client";
+import React, { useState } from "react";
 import styles from "./EntryScreen.module.css";
 import Image from "next/image";
+import LoginModal from "../loginModal/LoginModal";
 
 const EntryScreen = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+
   return (
     <>
       <div className={styles.wrapperAll}>
@@ -39,11 +45,13 @@ const EntryScreen = () => {
               including the Cookie Policy.
             </p>
             <h4>Already have an account?</h4>
-            <button className={styles.buttonLogin}>
+            <button onClick={toggleModal} className={styles.buttonLogin}>
               <p>Login</p>
             </button>
           </div>
+          <LoginModal isOpen={isModalOpen} toggleModal={toggleModal} />
         </div>
+
         <footer>
           <span>Informacje</span>
           <span>Pobierz aplikację serwisu X</span>
