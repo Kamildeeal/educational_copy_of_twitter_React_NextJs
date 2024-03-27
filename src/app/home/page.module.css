@@ -1,0 +1,100 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 100%;
+  min-height: 100vh;
+}
+
+.left_wing {
+  display: flex;
+  flex: 3;
+  border: 3px solid brown;
+  flex-direction: column;
+  text-align: right;
+  align-items: flex-end;
+}
+
+.image {
+  height: 100px;
+}
+.image_container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100px;
+  width: 225px;
+}
+.icons_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  width: 210px;
+  margin: 15px;
+}
+.icons_container span {
+  display: flex;
+  margin-top: 20px;
+  cursor: pointer;
+  width: 210px;
+  text-align: right;
+  font-size: 23px;
+}
+
+.icons_container b {
+  display: flex;
+  align-items: center;
+  width: 60px;
+}
+.icons_container button {
+  border-color: rgb(24, 129, 233);
+  background-color: rgb(26, 132, 219);
+  max-width: 380px;
+  transition-duration: 0.2s;
+  user-select: none;
+  height: 60px;
+  min-height: 36px;
+  outline-style: none;
+  margin-top: 50px;
+  cursor: pointer;
+  max-width: 310px;
+  min-width: 210px;
+  flex: 0 0 auto;
+  border-radius: 9999px;
+  border-width: 1px;
+  border-style: solid;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  display: flex;
+  pointer-events: auto;
+  font-size: 18px;
+  color: white;
+  direction: ltr;
+  font-family: "Roboto-Regular", arial, sans-serif;
+  font-weight: 600;
+}
+
+.left_wing .user_info {
+  display: flex;
+  font-size: 20px;
+  position: sticky;
+  bottom: 0;
+}
+
+.right_wing {
+  display: flex;
+  flex: 3;
+  border: 3px solid red;
+}
+
+.center {
+  display: flex;
+  flex: 5;
+  border: 3px solid green;
+  min-width: 420px;
+}
+.center button {
+  height: 50px;
+}
