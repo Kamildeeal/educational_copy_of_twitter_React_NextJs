@@ -8,6 +8,7 @@ import Image from "next/image";
 import { useUserAuth } from "@/context/userAuth";
 import { doc, onSnapshot } from "firebase/firestore";
 import Sidebar from "@/compontents/Sidebar";
+import MiddleInput from "@/compontents/MiddleInput";
 
 const HomePage = () => {
   const { user, setIsLoggedOut, setUser } = useUserAuth();
@@ -51,6 +52,7 @@ const HomePage = () => {
           >
             Log out
           </button>
+          <MiddleInput />
         </div>
         <div className={styles.right_wing}>RIHGHT WING</div>
       </div>
