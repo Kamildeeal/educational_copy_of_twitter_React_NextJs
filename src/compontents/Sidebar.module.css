@@ -1,28 +1,23 @@
-.container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  height: 100%;
-  min-height: 100vh;
+.positionOfSidebar {
+  height: 100vh;
 }
 
 .left_wing {
+  position: sticky;
+  top: 0;
   display: flex;
   flex: 3;
-  border: 3px solid brown;
   flex-direction: column;
   text-align: right;
   align-items: flex-end;
+  height: 100vh;
 }
 
-.image {
-  height: 100px;
-}
 .image_container {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  height: 100px;
+  height: auto;
   width: 225px;
 }
 .icons_container {
@@ -76,25 +71,9 @@
   font-weight: 600;
 }
 
-.left_wing .user_info {
-  display: flex;
+.user_info {
   font-size: 20px;
-  position: sticky;
-  bottom: 0;
-}
-
-.right_wing {
-  display: flex;
-  flex: 3;
-  border: 3px solid red;
-}
-
-.center {
-  display: flex;
-  flex: 5;
-  border: 3px solid green;
-  min-width: 420px;
-}
-.center button {
-  height: 50px;
+  position: fixed;
+  bottom: 0px;
+  height: 60px;
 }

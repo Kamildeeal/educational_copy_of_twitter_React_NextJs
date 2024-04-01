@@ -1,3 +1,6 @@
+.post_box {
+  border: 1px solid #e5e5e5;
+}
 .image_user_container {
   display: flex;
   flex-direction: row;
@@ -32,25 +35,33 @@
 
 .userNick,
 .timestamp {
-  font-size: 0.8rem;
+  font-size: 1rem;
 }
 
 .post_user_container {
   display: flex;
   align-items: center;
   white-space: nowrap;
-  margin: 15px;
 }
 
 .user_styles,
 .dots {
   font-weight: bold;
   margin-right: 10px;
+  font-size: 1.1rem;
+  margin-left: 10px;
 }
 
+.uploadedImage {
+  max-width: 516px;
+  border-radius: 10px;
+}
 .icons {
   display: flex;
   justify-content: space-between;
   padding-right: 10px;
   margin-top: 14px;
+  margin-right: 20px;
+  font-size: 1.3rem;
+  color: rgb(87, 86, 86);
 }

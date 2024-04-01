@@ -2,28 +2,27 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  height: 100%;
-  min-height: 100vh;
 }
 .left_wing {
   display: flex;
   flex: 3;
-  border: 3px solid brown;
   flex-direction: column;
   text-align: right;
   align-items: flex-end;
+  position: sticky;
+  top: 2%;
+  height: 100vh;
+  margin-right: 40px;
 }
 .right_wing {
   display: flex;
   flex: 3;
-  border: 3px solid red;
 }
 .center {
   display: flex;
   flex-direction: column;
-  flex: 5;
-  border: 3px solid green;
-  min-width: 420px;
+  margin: auto;
+  max-width: 610px;
 }
 .center button {
   height: 50px;

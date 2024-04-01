@@ -1,0 +1,26 @@
+.container_searchBox {
+  position: sticky;
+  top: 0;
+  margin-left: 20px;
+  margin-top: 5px;
+}
+.searchBox {
+  position: relative;
+}
+
+.input {
+  height: 50px;
+  box-sizing: border-box;
+  padding-left: 2rem;
+}
+
+.icon {
+  height: 2rem;
+  width: 2rem;
+  padding: 4px;
+  position: absolute;
+  box-sizing: border-box;
+  top: 50%;
+  left: 2px;
+  transform: translateY(-50%);
+}

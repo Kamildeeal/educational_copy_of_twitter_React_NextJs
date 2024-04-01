@@ -10,6 +10,7 @@ import { doc, onSnapshot } from "firebase/firestore";
 import Sidebar from "@/compontents/Sidebar";
 import MiddleInput from "@/compontents/MiddleInput";
 import MiddlePost from "@/compontents/MiddlePost";
+import RightSideBar from "@/compontents/RightSideBar";
 
 const HomePage = () => {
   const { user, setIsLoggedOut, setUser } = useUserAuth();
@@ -41,7 +42,9 @@ const HomePage = () => {
   return (
     <>
       <div className={styles.container}>
-        <Sidebar />
+        <div className={styles.left_wing}>
+          <Sidebar />
+        </div>
         <div className={styles.center}>
           HomePage
           <button
@@ -56,7 +59,9 @@ const HomePage = () => {
           <MiddleInput />
           <MiddlePost />
         </div>
-        <div className={styles.right_wing}>RIHGHT WING</div>
+        <div className={styles.right_wing}>
+          <RightSideBar />
+        </div>
       </div>
     </>
   );
