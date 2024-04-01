@@ -9,6 +9,7 @@ import { useUserAuth } from "@/context/userAuth";
 import { doc, onSnapshot } from "firebase/firestore";
 import Sidebar from "@/compontents/Sidebar";
 import MiddleInput from "@/compontents/MiddleInput";
+import MiddlePost from "@/compontents/MiddlePost";
 
 const HomePage = () => {
   const { user, setIsLoggedOut, setUser } = useUserAuth();
@@ -35,7 +36,7 @@ const HomePage = () => {
     return () => {
       authUnsubscribe();
     };
-  }, []);
+  }, [setIsLoggedOut, setUser]);
 
   return (
     <>
@@ -53,6 +54,7 @@ const HomePage = () => {
             Log out
           </button>
           <MiddleInput />
+          <MiddlePost />
         </div>
         <div className={styles.right_wing}>RIHGHT WING</div>
       </div>

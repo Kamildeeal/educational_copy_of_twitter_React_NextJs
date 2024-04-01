@@ -1,3 +1,7 @@
+.input_box {
+  border: 1px solid rgba(128, 128, 128, 0.664);
+}
+
 .cointainer {
   margin-top: 25px;
   border: 1px solid rgba(128, 128, 128, 0.158);
@@ -40,20 +44,59 @@
   border-radius: 50%;
 }
 
+.input_container {
+  display: flex;
+  flex-direction: row;
+}
+.container_text {
+  display: flex;
+  flex-direction: column;
+  flex: 10;
+}
+
+.container_emojis {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container_left {
+  display: flex;
+  flex-direction: row;
+}
+
+.container_left > p {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.post_btn {
+  margin-right: 80px;
+  background-color: rgb(26, 132, 219);
+  width: 100px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px;
+  color: white;
+  font-weight: bold;
+}
+
 .user_img {
-  height: 60px;
-  width: 30px;
-  background-color: red;
-  border-color: red;
+  display: flex;
+  flex: 1;
+  resize: none;
 }
 
 .textarea {
-  width: 100%;
   border: none;
-  focus-ring: 0;
+  resize: none;
   font-size: large;
-  color: #707070; /* placeholder-gray-700 */
+  color: #707070;
   letter-spacing: wider;
   min-height: 50px;
-  color: #707070; /* text-gray-700 */
+  color: #707070;
+  outline: none;
+  margin-left: 10px;
 }
