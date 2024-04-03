@@ -10,7 +10,8 @@
   text-align: right;
   align-items: flex-end;
   position: sticky;
-  top: 2%;
+  top: 10px;
+  margin-top: 10px;
   height: 100vh;
   margin-right: 40px;
 }
@@ -21,8 +22,9 @@
 .center {
   display: flex;
   flex-direction: column;
-  margin: auto;
   max-width: 610px;
+  align-items: flex-start;
+  align-self: flex-start;
 }
 .center button {
   height: 50px;

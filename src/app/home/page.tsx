@@ -12,7 +12,11 @@ import MiddleInput from "@/compontents/MiddleInput";
 import MiddlePost from "@/compontents/MiddlePost";
 import RightSideBar from "@/compontents/RightSideBar";
 
-const HomePage = () => {
+type NewsData = {
+  newsData: any[];
+};
+
+const HomePage = ({ newsResults }: any) => {
   const { user, setIsLoggedOut, setUser } = useUserAuth();
   const router = useRouter();
   // const userSession = sessionStorage.getItem("user");
@@ -68,3 +72,32 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
+// type Repo = {
+//   article: string;
+//   title: string;
+// };
+
+// export async function getStaticProps() {
+//   const response = await fetch(
+//     "https://saurav.tech/NewsAPI/everything/cnn.json"
+//   );
+//   const newsData = await response.json();
+
+//   return {
+//     props: {
+//       newsData,
+//     },
+//   };
+// }
+
+// export async function getStaticProps() {
+//   const newsResults = await fetch(
+//     "https://saurav.tech/NewsAPI/everything/cnn.json"
+//   ).then((res) => res.json());
+//   return {
+//     props: {
+//       newsResults,
+//     },
+//   };
+// }

@@ -1,6 +1,6 @@
 .container_searchBox {
   position: sticky;
-  top: 0;
+  top: 10px;
   margin-left: 20px;
   margin-top: 5px;
 }
@@ -9,13 +9,22 @@
 }
 
 .input {
-  height: 50px;
+  height: 45px;
+  width: 250px;
   box-sizing: border-box;
+  background-color: rgba(128, 128, 128, 0.158);
   padding-left: 2rem;
+  border-radius: 15px;
+  box-shadow: none;
+  border: none;
+}
+.input:focus {
+  background-color: white;
+  border: lightblue;
 }
 
 .icon {
-  height: 2rem;
+  height: 1.8rem;
   width: 2rem;
   padding: 4px;
   position: absolute;
@@ -23,4 +32,13 @@
   top: 50%;
   left: 2px;
   transform: translateY(-50%);
+}
+
+.news {
+  border: 1px solid rgba(128, 128, 128, 0.158);
+  background-color: rgba(128, 128, 128, 0.158);
+  margin-top: 25px;
+  margin-left: 15px;
+  width: 350px;
+  border-radius: 10px;
 }
