@@ -3,12 +3,13 @@ import { auth, db } from "@/firebase/config";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { addDoc, collection, doc, setDoc } from "firebase/firestore";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useId, useState } from "react";
 import Swal from "sweetalert2";
 
 export default function useCreateAccAndAddUserToStore() {
   const [firstName, setFirstName] = useState("");
   const [email, setEmail] = useState("");
+  const [uid, setUid] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const router = useRouter();
@@ -63,6 +64,7 @@ export default function useCreateAccAndAddUserToStore() {
       const user = await createUserWithEmailAndPassword(auth, email, password);
       await setDoc(doc(db, "users", user.user.uid), {
         ...userData,
+        uid: user.user.uid,
       });
 
       setEmail("");

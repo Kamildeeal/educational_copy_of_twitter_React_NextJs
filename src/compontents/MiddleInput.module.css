@@ -1,6 +1,6 @@
 .input_box {
   border: 1px solid rgba(128, 128, 128, 0.664);
-  width: 590px;
+  width: 592px;
 }
 
 .cointainer {
@@ -47,12 +47,14 @@
 
 .input_container {
   display: flex;
-  flex-direction: row;
 }
 .container_text {
   display: flex;
   flex-direction: column;
   flex: 10;
+}
+.container_text > textarea {
+  padding-top: 10px;
 }
 
 .container_emojis {
@@ -74,14 +76,24 @@
 .post_btn {
   margin-right: 80px;
   background-color: rgb(26, 132, 219);
-  width: 100px;
-  height: 40px;
+  border: none;
+  height: 35px;
+  width: 90px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 30px;
   color: white;
+  font-size: 1rem;
   font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 15px;
+  margin-top: 10px;
+}
+
+.post_btn:disabled {
+  opacity: 0.5;
+  cursor: default;
 }
 
 .user_img {
@@ -100,4 +112,66 @@
   color: #707070;
   outline: none;
   margin-left: 10px;
+}
+.add_photo,
+.add_emoji {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 1.3rem;
+  margin: 0;
+}
+
+.add_photo:hover,
+.add_emoji:hover {
+  background-color: #70707025;
+  cursor: pointer;
+}
+.container_uploaded_img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.uploaded_img {
+  padding: 10px;
+  width: 516px;
+  border-radius: 30px;
+}
+
+.loader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000; /* upewnij się, że loader będzie na wierzchu */
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(8, 8, 8, 0.5); /* szary kolor z przezroczystością */
+}
+
+.remove_imported_img {
+  position: relative;
+  left: 40%;
+  top: 12%;
+  background: rgba(163, 160, 160, 0.425);
+  width: 40px;
+  height: 25px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.remove_imported_img:hover {
+  background-color: rgba(87, 86, 86, 0.637);
 }

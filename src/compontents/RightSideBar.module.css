@@ -44,7 +44,8 @@
   transform: translateY(-50%);
 }
 
-.news {
+.news,
+.follow_section {
   border: 1px solid rgba(128, 128, 128, 0.158);
   background-color: rgba(128, 128, 128, 0.158);
   margin-top: 85px;
@@ -53,7 +54,8 @@
   border-radius: 10px;
 }
 
-.news > h4 {
+.news > h4,
+.follow_section > h4 {
   padding-left: 10px;
   display: flex;
   flex-direction: column;
@@ -113,7 +115,7 @@
   color: grey;
 }
 
-.news > h4 > p {
+.follow_section > h4 > p {
   color: grey;
   font-size: 12px;
   margin: 0px;

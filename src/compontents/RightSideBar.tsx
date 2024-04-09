@@ -61,7 +61,7 @@ export default function RightSideBar() {
           Load more news
         </button>
       </div>
-      <div className={styles.news}>
+      <div className={styles.follow_section}>
         <h4>
           Who to Follow <p> from free API - https://randomuser.me</p>
         </h4>
