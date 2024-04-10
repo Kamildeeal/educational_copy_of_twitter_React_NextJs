@@ -1,29 +1,62 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import styles from "./ExamplePost.module.css";
+import styles from "./FirebasePost.module.css";
 import example_avatar from "../../public/example_avatar.png";
 import { FaRocketchat } from "react-icons/fa6";
 import { FaRegTrashAlt, FaHeart, FaChartBar } from "react-icons/fa";
 import { BiRepost } from "react-icons/bi";
 import { useUserAuth } from "@/context/userAuth";
 import Moment from "react-moment";
-import { useSession } from "next-auth/react";
-import { doc, setDoc } from "firebase/firestore";
-import { db } from "@/firebase/config";
 
-const ExamplePost = ({ post, id }: any) => {
+import {
+  collection,
+  deleteDoc,
+  doc,
+  onSnapshot,
+  setDoc,
+} from "firebase/firestore";
+import { db, storage } from "@/firebase/config";
+import { deleteObject, ref } from "firebase/storage";
+
+const FirebasePost = ({ post, id }: any) => {
   const { user, setIsLoggedOut, setUser } = useUserAuth();
+  const [likes, setLikes] = useState([]);
+  const [hasLiked, setHasLiked] = useState(false);
 
   async function likePost() {
-    await setDoc(doc(db, "posts", post.id, "likes", user.uid), {
-      username: user.firstName,
-    });
-    console.log("done");
+    if (hasLiked) {
+      await deleteDoc(doc(db, "posts", id, "likes", user.uid));
+    } else {
+      await setDoc(doc(db, "posts", post.id, "likes", user.uid), {
+        username: user.firstName,
+      });
+      console.log("done");
+    }
   }
+
+  async function deletePost() {
+    if (window.confirm("Are you sure you want to delete this post?")) {
+      deleteDoc(doc(db, "posts", id));
+      if (post.data().image) {
+        deleteObject(ref(storage, `posts/${id}/image`));
+      }
+    }
+  }
+
   useEffect(() => {
-    console.log("post.id:", post.id);
-    console.log("user.id:", user.uid);
+    console.log(user.uid);
   }, []);
+  useEffect(() => {
+    const unsubsribe = onSnapshot(
+      collection(db, "posts", post.id, "likes"),
+      (snapshot: any) => setLikes(snapshot.docs)
+    );
+    setHasLiked(likes.findIndex((like: any) => like.id === user.uid) !== -1);
+  }, [db, likes]);
+
+  // useEffect(() => {
+  //   setHasLiked(likes.findIndex((like: any) => like.id === user.uid) !== -1);
+  // }, [likes]);
 
   return (
     <div>
@@ -83,9 +116,20 @@ const ExamplePost = ({ post, id }: any) => {
             <div className={styles.icons}>
               <FaRocketchat />
               <BiRepost />
-              <FaHeart onClick={likePost} />
+              <div className={styles.container_icon_heart}>
+                {hasLiked ? (
+                  <FaHeart fill="red" onClick={likePost} />
+                ) : (
+                  <FaHeart onClick={likePost} />
+                )}
+                {likes.length > 0 && (
+                  <span className={styles.like_counter}> {likes.length}</span>
+                )}
+              </div>
               <FaChartBar />
-              <FaRegTrashAlt />
+              {user?.uid === post?.data()?.id && (
+                <FaRegTrashAlt onClick={deletePost} />
+              )}
             </div>
           </div>
         </div>
@@ -94,4 +138,4 @@ const ExamplePost = ({ post, id }: any) => {
   );
 };
 
-export default ExamplePost;
+export default FirebasePost;
