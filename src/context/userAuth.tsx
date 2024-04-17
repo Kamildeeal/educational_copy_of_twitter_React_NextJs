@@ -4,6 +4,7 @@ import { auth, db } from "@/firebase/config";
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, onSnapshot } from "firebase/firestore";
 import React, { PropsWithChildren, useEffect, useState } from "react";
+import { RecoilRoot } from "recoil";
 
 type State = {
   isLoggedOut: boolean;
@@ -39,7 +40,7 @@ export const AuthContextProvider = ({ children }: PropsWithChildren<{}>) => {
         setCurrentUser,
       }}
     >
-      {children}
+      <RecoilRoot>{children}</RecoilRoot>
     </UserAuthContext.Provider>
   );
 };

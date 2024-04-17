@@ -14,13 +14,18 @@ import { useUserAuth } from "@/context/userAuth";
 import { auth } from "@/firebase/config";
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
 import SyncLoader from "react-spinners/SyncLoader";
+import { useRecoilState } from "recoil";
+import { userState } from "../../atom_state/userAtom";
 
 export default function MiddleInput() {
   const [input, setInput] = useState("");
   const filePickerRef = useRef<any>(null);
   const [selectedFile, setSelectedFile] = useState(null);
-  const { user } = useUserAuth();
+  // const { user } = useUserAuth();
+  // const user = auth.currentUser?.providerData[0];
   const [loading, setLoading] = useState(false);
+  // const user = auth.currentUser.providerData[0];
+  // const [currentUser, setCurrentUser] = useRecoilState(userState);
 
   const sendPost = async () => {
     if (loading) return;
@@ -33,6 +38,15 @@ export default function MiddleInput() {
         text: input,
         timestamp: serverTimestamp(),
       });
+
+      // const docRef = await addDoc(collection(db, "posts"), {
+      //   id: currentUser.uid,
+      //   text: input,
+      //   userImg: currentUser.userImg,
+      //   timestamp: serverTimestamp(),
+      //   name: currentUser.name,
+      //   username: currentUser.username,
+      // });
 
       const imageRef = ref(storage, `posts/${docRef.id}/image`);
       if (selectedFile) {
@@ -53,15 +67,6 @@ export default function MiddleInput() {
     }
   };
 
-  // export const createData = async (collectionName: any, data: any) => {
-  //   const id: any = generateRandomID;
-  //   try {
-  //     const docRef = doc(db, collectionName, id);
-  //     await setDoc(docRef, { id, ...data });
-  //   } catch (error) {
-  //     console.error("Error adding document: ", error);
-  //   }
-  // };
   const reader = new FileReader();
   const addImageToPost = (e: any) => {
     setLoading(true);
@@ -71,7 +76,7 @@ export default function MiddleInput() {
         const fileData = await readerEvent.target.result;
         setSelectedFile(fileData);
       };
-      console.log(selectedFile); // DOESNT WAIT FOR USESTATE UPDATE WHY?
+      console.log(selectedFile);
     }
     setLoading(false);
   };
@@ -157,7 +162,4 @@ export default function MiddleInput() {
       </div>
     </div>
   );
-}
-function useRecoilState(userState: any): [any, any] {
-  throw new Error("Function not implemented.");
 }

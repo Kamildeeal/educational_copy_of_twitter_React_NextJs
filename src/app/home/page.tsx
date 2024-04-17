@@ -4,13 +4,16 @@ import { useRouter } from "next/navigation";
 import { auth, db } from "@/firebase/config";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import styles from "./page.module.css";
-import Image from "next/image";
+
 import { useUserAuth } from "@/context/userAuth";
-import { doc, onSnapshot } from "firebase/firestore";
+import { doc, getDoc, onSnapshot } from "firebase/firestore";
 import Sidebar from "@/compontents/Sidebar";
 import MiddleInput from "@/compontents/MiddleInput";
 import MiddlePost from "@/compontents/MiddlePost";
 import RightSideBar from "@/compontents/RightSideBar";
+import CommentModal from "@/compontents/CommentModal";
+import { RecoilRoot, useRecoilState } from "recoil";
+import { userState } from "../../../atom_state/userAtom";
 
 type NewsData = {
   newsData: any[];
@@ -18,12 +21,52 @@ type NewsData = {
 
 const HomePage = ({ newsResults }: any) => {
   const { user, setIsLoggedOut, setUser } = useUserAuth();
-  const router = useRouter();
+  // const router = useRouter();
+  // const [currentUser, setCurrentUser] = useRecoilState(userState);
   // const userSession = sessionStorage.getItem("user");
 
   // if (!user && !userSession) {
   //   router.push("/");
+  // // }
+  // useEffect(() => {
+  //   onAuthStateChanged(auth, (user) => {
+  //     if (user) {
+  //       const fetchUser = async () => {
+  //         const docRef = doc(db, "users", auth.currentUser?.providerData[0].uid);
+  //         const docSnap = await getDoc(docRef);
+  //         if (docSnap.exists()) {
+  //           setCurrentUser(docSnap.data());
+  //         }
+  //       };
+  //       fetchUser();
+  //     }
+  //   })},[]);
+
+  const router = useRouter();
+  // const [currentUserx, setCurrentUserx] = useRecoilState(userState);
+  // console.log(currentUserx);
+  // useEffect(() => {
+  //   onAuthStateChanged(auth, (user) => {
+  //     if (user) {
+  //       const uid: any = auth.currentUser?.providerData[0].uid;
+  //       const fetchUser = async () => {
+  //         const docRef = doc(db, "users", uid);
+  //         const docSnap = await getDoc(docRef);
+  //         if (docSnap.exists()) {
+  //           setCurrentUser(docSnap.data());
+  //         }
+  //       };
+  //       fetchUser();
+  //     }
+  //   });
+  // }, []);
+
+  // function onSignOut() {
+  //   signOut(auth);
+  //   setCurrentUser({});
   // }
+
+  // }, []);
 
   useEffect(() => {
     const authUnsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -41,7 +84,7 @@ const HomePage = ({ newsResults }: any) => {
     return () => {
       authUnsubscribe();
     };
-  }, [setIsLoggedOut, setUser]);
+  }, [setIsLoggedOut]);
 
   return (
     <>
@@ -66,6 +109,9 @@ const HomePage = ({ newsResults }: any) => {
         <div className={styles.right_wing}>
           <RightSideBar />
         </div>
+
+        {/* Modal */}
+        <CommentModal />
       </div>
     </>
   );

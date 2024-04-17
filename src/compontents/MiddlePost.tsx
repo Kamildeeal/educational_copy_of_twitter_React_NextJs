@@ -9,6 +9,7 @@ import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { db } from "@/firebase/config";
 import ExamplePost from "./ExamplePost";
 import FirebasePost from "./FirebasePost";
+import { AnimatePresence, motion } from "framer-motion";
 
 interface FirebasePostProps {
   id: number; // Assuming id is of type string
@@ -30,10 +31,20 @@ const MiddlePost = () => {
 
   return (
     <div>
-      {posts.map((post: FirebasePostProps) => (
-        <FirebasePost key={post.id} id={post.id} post={post} />
-      ))}
-      <ExamplePost />
+      <AnimatePresence>
+        {posts.map((post: FirebasePostProps) => (
+          <motion.div
+            key={post.id}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1 }}
+          >
+            <FirebasePost key={post.id} id={post.id} post={post} />
+          </motion.div>
+        ))}
+        <ExamplePost />
+      </AnimatePresence>
     </div>
   );
 };

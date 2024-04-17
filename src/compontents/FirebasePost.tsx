@@ -7,7 +7,10 @@ import { FaRegTrashAlt, FaHeart, FaChartBar } from "react-icons/fa";
 import { BiRepost } from "react-icons/bi";
 import { useUserAuth } from "@/context/userAuth";
 import Moment from "react-moment";
-
+import { db, storage } from "@/firebase/config";
+import { deleteObject, ref } from "firebase/storage";
+import { useRecoilState } from "recoil";
+import { modalState, postIdState } from "../../atom_state/modalAtom";
 import {
   collection,
   deleteDoc,
@@ -15,13 +18,13 @@ import {
   onSnapshot,
   setDoc,
 } from "firebase/firestore";
-import { db, storage } from "@/firebase/config";
-import { deleteObject, ref } from "firebase/storage";
 
 const FirebasePost = ({ post, id }: any) => {
   const { user, setIsLoggedOut, setUser } = useUserAuth();
   const [likes, setLikes] = useState([]);
   const [hasLiked, setHasLiked] = useState(false);
+  const [open, setOpen] = useRecoilState(modalState);
+  const [postId, setPostId] = useRecoilState(postIdState);
 
   async function likePost() {
     if (hasLiked) {
@@ -78,7 +81,9 @@ const FirebasePost = ({ post, id }: any) => {
             <div className={styles.post_header}>
               {/* post user info */}
               <div className={styles.post_info}>
-                <h4 className={styles.user_styles}>{user?.firstName} </h4>
+                <h4 className={styles.user_styles}>
+                  {post?.data()?.firstName}{" "}
+                </h4>
                 <span className={styles.userNick}>
                   {" "}
                   {`@`}
@@ -114,7 +119,12 @@ const FirebasePost = ({ post, id }: any) => {
       /> */}
             {/* {icons} */}
             <div className={styles.icons}>
-              <FaRocketchat />
+              <FaRocketchat
+                onClick={() => {
+                  setOpen(!open);
+                  setPostId(post.id);
+                }}
+              />
               <BiRepost />
               <div className={styles.container_icon_heart}>
                 {hasLiked ? (
