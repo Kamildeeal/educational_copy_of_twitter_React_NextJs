@@ -28,14 +28,29 @@ const FirebasePost = ({ post, id }: any) => {
   const [postId, setPostId] = useRecoilState(postIdState);
   const [currentUser, setCurrentUser] = useRecoilState(userState);
 
+  useEffect(() => {
+    const unsubscribe = onSnapshot(
+      collection(db, "posts", id, "likes"),
+      (snapshot: any) => setLikes(snapshot.docs)
+    );
+  }, [db]);
+
+  useEffect(() => {
+    setHasLiked(
+      likes.findIndex((like: any) => like.id === currentUser?.uid) !== -1
+    );
+  }, [likes, currentUser]);
+
   async function likePost() {
-    if (hasLiked) {
-      await deleteDoc(doc(db, "posts", id, "likes", user.uid));
-    } else {
-      await setDoc(doc(db, "posts", post.id, "likes", user.uid), {
-        username: user.firstName,
-      });
-      console.log("done");
+    if (currentUser.uid) {
+      if (hasLiked) {
+        await deleteDoc(doc(db, "posts", post.id, "likes", currentUser?.uid));
+      } else {
+        await setDoc(doc(db, "posts", post.id, "likes", currentUser?.uid), {
+          username: currentUser?.firstName,
+        });
+        console.log(currentUser?.uid);
+      }
     }
   }
 
@@ -47,17 +62,6 @@ const FirebasePost = ({ post, id }: any) => {
       }
     }
   }
-
-  useEffect(() => {
-    console.log(user.uid);
-  }, []);
-  useEffect(() => {
-    const unsubsribe = onSnapshot(
-      collection(db, "posts", post.id, "likes"),
-      (snapshot: any) => setLikes(snapshot.docs)
-    );
-    setHasLiked(likes.findIndex((like: any) => like.id === user.uid) !== -1);
-  }, [db, likes]);
 
   // useEffect(() => {
   //   setHasLiked(likes.findIndex((like: any) => like.id === user.uid) !== -1);
@@ -139,7 +143,7 @@ const FirebasePost = ({ post, id }: any) => {
                 )}
               </div>
               <FaChartBar />
-              {user?.uid === post?.data()?.id && (
+              {currentUser?.uid === post?.data()?.uid && (
                 <FaRegTrashAlt onClick={deletePost} />
               )}
             </div>

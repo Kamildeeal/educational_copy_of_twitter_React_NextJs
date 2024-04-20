@@ -2,9 +2,12 @@ import Image from "next/image";
 import React from "react";
 import styles from "./Sidebar.module.css";
 import { useUserAuth } from "@/context/userAuth";
+import { useRecoilState } from "recoil";
+import { userState } from "../../atom_state/userAtom";
 
 export default function Sidebar() {
   const { user, setIsLoggedOut, setUser } = useUserAuth();
+  const [currentUser, setCurrentUser] = useRecoilState(userState);
   return (
     <div className={styles.positionOfSidebar}>
       <div className={styles.left_wing}>
@@ -51,7 +54,7 @@ export default function Sidebar() {
           <button>Post</button>
         </div>
         <div className={styles.user_info}>
-          Mr {user?.firstName} {user?.email}
+          Mr {currentUser?.firstName} {currentUser?.email}
         </div>
       </div>
     </div>

@@ -20,7 +20,7 @@ type NewsData = {
 };
 interface UserData {
   email: string;
-  id: string;
+  uid: string;
   image: string;
   text: string;
   timestamp: string;
@@ -51,7 +51,7 @@ const HomePage = ({ newsResults }: any) => {
         }
       }
     });
-  }, []);
+  }, [auth]);
   // useEffect(() => {
   //   const authUnsubscribe = onAuthStateChanged(auth, (currentUser) => {
   //     if (currentUser) {
@@ -83,7 +83,7 @@ const HomePage = ({ newsResults }: any) => {
               auth.signOut();
               setCurrentUser({
                 email: "",
-                id: "",
+                uid: "",
                 image: "",
                 text: "",
                 timestamp: "",

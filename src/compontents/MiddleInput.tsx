@@ -32,7 +32,7 @@ export default function MiddleInput() {
     setLoading(true);
     if (auth.currentUser) {
       const docRef = await addDoc(collection(db, "posts"), {
-        id: auth.currentUser.uid,
+        uid: auth.currentUser.uid,
         email: auth.currentUser.email,
         text: input,
         timestamp: serverTimestamp(),
