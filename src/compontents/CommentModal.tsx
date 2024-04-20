@@ -10,8 +10,15 @@ import Image from "next/image";
 import Moment from "react-moment";
 import { useUserAuth } from "@/context/userAuth";
 import { db } from "@/firebase/config";
-import { doc, onSnapshot } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  onSnapshot,
+  serverTimestamp,
+} from "firebase/firestore";
 import { userState } from "../../atom_state/userAtom";
+import { useRouter } from "next/navigation";
 
 export default function CommentModal() {
   const [open, setOpen] = useRecoilState(modalState);
@@ -22,6 +29,8 @@ export default function CommentModal() {
   const filePickerRef = useRef<any>(null);
   const [loading, setLoading] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
+  const [input, setInput] = useState("");
+  const router = useRouter();
 
   useEffect(() => {
     onSnapshot(doc(db, "posts", postId), (snapshot: any) => {
@@ -42,6 +51,19 @@ export default function CommentModal() {
     }
     setLoading(false);
   };
+  async function sendComment() {
+    await addDoc(collection(db, "posts", postId, "comments"), {
+      userComment: input,
+      userName: currentUser.firstName,
+      userEmail: currentUser.email,
+      timestamp: serverTimestamp(),
+      userId: currentUser.uid,
+    });
+
+    setOpen(false);
+    setInput("");
+    router.push(`/posts/${postId}`);
+  }
 
   return (
     <div>
@@ -116,6 +138,8 @@ export default function CommentModal() {
                 className={styles.modal_comment_text_reply}
                 name="answer_to_post"
                 placeholder="Post your reply"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
               ></textarea>
             </div>
           </div>
@@ -138,7 +162,9 @@ export default function CommentModal() {
               </p>
               <p className={styles.add_emoji}>😄</p>
             </div>
-            <button className={styles.post_btn}>reply</button>
+            <button className={styles.post_btn} onClick={sendComment}>
+              reply
+            </button>
           </div>
         </Modal>
       )}
