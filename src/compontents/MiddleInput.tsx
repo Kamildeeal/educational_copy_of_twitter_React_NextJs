@@ -132,13 +132,13 @@ export default function MiddleInput() {
             </div>
           )}
           <div className={styles.container_emojis}>
-            <div
-              className={styles.container_left}
-              onClick={() => {
-                filePickerRef.current.click();
-              }}
-            >
-              <p className={styles.add_photo}>
+            <div className={styles.container_left}>
+              <p
+                className={styles.add_photo}
+                onClick={() => {
+                  filePickerRef.current.click();
+                }}
+              >
                 🖼️
                 <input
                   type="file"

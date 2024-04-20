@@ -106,13 +106,9 @@ const FirebasePost = ({ post, id }: any) => {
 
             {/* post text */}
 
-            <p
-              className={styles.post_user_container}
-              // onClick={() => router.push(`/posts/${id}`)}
-              // className="text-gray-800 text-[15px sm:text-[16px] mb-2"
-            >
-              {post?.data()?.text}
-            </p>
+            <div className={styles.post_user_container}>
+              <p className={styles.text}>{post?.data()?.text}</p>
+            </div>
             <img src={post?.data()?.image} className={styles.uploadedImage} />
 
             {/* post image */}

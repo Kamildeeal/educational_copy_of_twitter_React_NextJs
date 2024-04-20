@@ -4,7 +4,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  height: 300px;
+  height: auto;
   width: 600px;
   background-color: #fff;
   border: 2px solid #e5e7eb;
@@ -21,6 +21,8 @@
   right: -3%;
   top: 4%;
   border-bottom: 1px solid #e5e5e5;
+  margin-top: 14px;
+  margin-bottom: 14px;
 }
 .modal_comment_header_close_btn {
   background-color: white;
@@ -83,4 +85,104 @@
 }
 .current_post_container {
   margin-left: 8px;
+  width: 480px;
+}
+
+.uploadedImage {
+  width: 250px;
+  height: 250px;
+}
+
+.current_post_img_container {
+  width: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 50px;
+}
+
+.modal_comment_containier_current_post {
+  display: flex;
+}
+.modal_comment_text_reply {
+  width: 480px;
+  resize: none;
+  height: 100px;
+  margin-left: 10px;
+}
+.modal_comment_reply_container {
+  display: flex;
+  margin-top: 24px;
+}
+.modal_comment_current_user_info_container {
+  display: flex;
+}
+
+.modal_comment_reply_area {
+  display: flex;
+  flex-direction: column;
+  width: 480px;
+}
+.comment_modal_footer_container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.comment_modal_footer_emoji_container {
+  display: flex;
+  flex-direction: row;
+  width: 120px;
+  justify-content: space-between;
+}
+
+.add_photo,
+.add_emoji {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.add_photo:hover,
+.add_emoji:hover {
+  background-color: #70707025;
+  cursor: pointer;
+}
+
+.post_btn {
+  background-color: rgb(26, 132, 219);
+  border: none;
+  height: 35px;
+  width: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 15px;
+  margin-top: 10px;
+}
+.post_btn:hover {
+  background-color: rgba(26, 132, 219, 0.815);
+}
+
+.post_btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.connect_line {
+  background-color: rgba(128, 128, 128, 0.623);
+  width: 2px;
+  position: relative;
+  left: -27px;
+  top: 44px;
+  z-index: -1;
 }

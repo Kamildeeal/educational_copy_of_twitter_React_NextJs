@@ -41,7 +41,11 @@
 .post_user_container {
   display: flex;
   align-items: center;
-  white-space: nowrap;
+  width: 470px;
+  word-wrap: break-word;
+}
+.text {
+  word-wrap: break-word;
 }
 
 .user_styles,
