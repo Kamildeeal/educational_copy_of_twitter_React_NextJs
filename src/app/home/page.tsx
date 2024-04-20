@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { auth, db } from "@/firebase/config";
-import { onAuthStateChanged, signOut } from "firebase/auth";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import styles from "./page.module.css";
 
 import { useUserAuth } from "@/context/userAuth";
@@ -18,73 +18,57 @@ import { userState } from "../../../atom_state/userAtom";
 type NewsData = {
   newsData: any[];
 };
+interface UserData {
+  email: string;
+  id: string;
+  image: string;
+  text: string;
+  timestamp: string;
+  firstName: string;
+}
 
 const HomePage = ({ newsResults }: any) => {
   const { user, setIsLoggedOut, setUser } = useUserAuth();
-  // const router = useRouter();
-  // const [currentUser, setCurrentUser] = useRecoilState(userState);
-  // const userSession = sessionStorage.getItem("user");
-
-  // if (!user && !userSession) {
-  //   router.push("/");
-  // // }
-  // useEffect(() => {
-  //   onAuthStateChanged(auth, (user) => {
-  //     if (user) {
-  //       const fetchUser = async () => {
-  //         const docRef = doc(db, "users", auth.currentUser?.providerData[0].uid);
-  //         const docSnap = await getDoc(docRef);
-  //         if (docSnap.exists()) {
-  //           setCurrentUser(docSnap.data());
-  //         }
-  //       };
-  //       fetchUser();
-  //     }
-  //   })},[]);
 
   const router = useRouter();
-  // const [currentUserx, setCurrentUserx] = useRecoilState(userState);
-  // console.log(currentUserx);
-  // useEffect(() => {
-  //   onAuthStateChanged(auth, (user) => {
-  //     if (user) {
-  //       const uid: any = auth.currentUser?.providerData[0].uid;
-  //       const fetchUser = async () => {
-  //         const docRef = doc(db, "users", uid);
-  //         const docSnap = await getDoc(docRef);
-  //         if (docSnap.exists()) {
-  //           setCurrentUser(docSnap.data());
-  //         }
-  //       };
-  //       fetchUser();
-  //     }
-  //   });
-  // }, []);
-
-  // function onSignOut() {
-  //   signOut(auth);
-  //   setCurrentUser({});
-  // }
-
-  // }, []);
+  const [currentUser, setCurrentUser] = useRecoilState(userState);
 
   useEffect(() => {
-    const authUnsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      if (currentUser) {
-        setIsLoggedOut(false);
-        const userDocRef = doc(db, "users", currentUser.uid);
-        onSnapshot(userDocRef, (doc) => {
-          // if (doc.exists()) {
-          setUser(doc.data());
-        });
-      } else {
-        setIsLoggedOut(true);
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const uid = user.uid;
+        if (uid) {
+          const fetchUser = async () => {
+            const docRef = doc(db, "users", uid);
+            const docSnap = await getDoc(docRef);
+            if (docSnap.exists()) {
+              const userData = docSnap.data() as UserData;
+              setCurrentUser(userData);
+              console.log(currentUser);
+            }
+          };
+          fetchUser();
+        }
       }
     });
-    return () => {
-      authUnsubscribe();
-    };
-  }, [setIsLoggedOut]);
+  }, []);
+  // useEffect(() => {
+  //   const authUnsubscribe = onAuthStateChanged(auth, (currentUser) => {
+  //     if (currentUser) {
+  //       setIsLoggedOut(false);
+  //       const userDocRef = doc(db, "users", currentUser.uid);
+  //       onSnapshot(userDocRef, (doc) => {
+  //         // if (doc.exists()) {
+  //         setUser(doc.data());
+  //       });
+  //     } else {
+  //       setIsLoggedOut(true);
+  //     }
+  //   });
+  //   return () => {
+  //     authUnsubscribe();
+  //   };
+  // }, [setIsLoggedOut]);
 
   return (
     <>
@@ -97,6 +81,14 @@ const HomePage = ({ newsResults }: any) => {
           <button
             onClick={() => {
               auth.signOut();
+              setCurrentUser({
+                email: "",
+                id: "",
+                image: "",
+                text: "",
+                timestamp: "",
+                firstName: "",
+              });
               sessionStorage.removeItem("user");
               router.push("/");
             }}

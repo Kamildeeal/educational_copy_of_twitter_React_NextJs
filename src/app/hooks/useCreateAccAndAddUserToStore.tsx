@@ -53,14 +53,6 @@ export default function useCreateAccAndAddUserToStore() {
     let runfinally = true;
 
     try {
-      // const user = await createUserWithEmailAndPassword(auth, email, password);
-      // console.log({ user });
-      // await addDoc(collection(db, "users"), {
-      //   ...userData,
-      // });
-      //NOTE - setDoc is overwrtting data that exists
-      //question - new doc in collection (addDoc) also have UID, why it doesnt work later with onAuthStateChanged?
-
       const user = await createUserWithEmailAndPassword(auth, email, password);
       await setDoc(doc(db, "users", user.user.uid), {
         ...userData,

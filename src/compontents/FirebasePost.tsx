@@ -18,6 +18,7 @@ import {
   onSnapshot,
   setDoc,
 } from "firebase/firestore";
+import { userState } from "../../atom_state/userAtom";
 
 const FirebasePost = ({ post, id }: any) => {
   const { user, setIsLoggedOut, setUser } = useUserAuth();
@@ -25,6 +26,7 @@ const FirebasePost = ({ post, id }: any) => {
   const [hasLiked, setHasLiked] = useState(false);
   const [open, setOpen] = useRecoilState(modalState);
   const [postId, setPostId] = useRecoilState(postIdState);
+  const [currentUser, setCurrentUser] = useRecoilState(userState);
 
   async function likePost() {
     if (hasLiked) {
@@ -87,7 +89,7 @@ const FirebasePost = ({ post, id }: any) => {
                 <span className={styles.userNick}>
                   {" "}
                   {`@`}
-                  {post?.data()?.email}{" "}
+                  {post?.data()?.email}
                 </span>
                 <span className={styles.timestamp}>
                   ・<Moment fromNow>{post?.data()?.timestamp?.toDate()}</Moment>

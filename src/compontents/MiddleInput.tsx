@@ -14,7 +14,7 @@ import { useUserAuth } from "@/context/userAuth";
 import { auth } from "@/firebase/config";
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
 import SyncLoader from "react-spinners/SyncLoader";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { userState } from "../../atom_state/userAtom";
 
 export default function MiddleInput() {
@@ -25,18 +25,18 @@ export default function MiddleInput() {
   // const user = auth.currentUser?.providerData[0];
   const [loading, setLoading] = useState(false);
   // const user = auth.currentUser.providerData[0];
-  // const [currentUser, setCurrentUser] = useRecoilState(userState);
+  const currentUser = useRecoilValue(userState);
 
   const sendPost = async () => {
     if (loading) return;
     setLoading(true);
     if (auth.currentUser) {
       const docRef = await addDoc(collection(db, "posts"), {
-        // name: user.displayName,
         id: auth.currentUser.uid,
         email: auth.currentUser.email,
         text: input,
         timestamp: serverTimestamp(),
+        firstName: currentUser.firstName,
       });
 
       // const docRef = await addDoc(collection(db, "posts"), {

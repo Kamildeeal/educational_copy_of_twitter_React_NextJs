@@ -17,7 +17,7 @@ export default function RightSideBar() {
     const newsResults = await fetch(
       "https://saurav.tech/NewsAPI/everything/cnn.json"
     ).then((res) => res.json());
-    console.log(newsResults);
+    // console.log(newsResults);
     const articles = newsResults.articles;
     setNews(articles);
   }
