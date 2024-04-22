@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import styles from "./FirebasePost.module.css";
-import example_avatar from "../../public/example_avatar.png";
+import styles from "./PostComponent.module.css";
+import example_avatar from "@/../../public/example_avatar.png";
 import { FaRocketchat } from "react-icons/fa6";
 import { FaRegTrashAlt, FaHeart, FaChartBar } from "react-icons/fa";
 import { BiRepost } from "react-icons/bi";
@@ -10,7 +10,7 @@ import Moment from "react-moment";
 import { db, storage } from "@/firebase/config";
 import { deleteObject, ref } from "firebase/storage";
 import { useRecoilState } from "recoil";
-import { modalState, postIdState } from "../../atom_state/modalAtom";
+import { modalState, postIdState } from "@/../../atom_state/modalAtom";
 import {
   collection,
   deleteDoc,
@@ -18,7 +18,8 @@ import {
   onSnapshot,
   setDoc,
 } from "firebase/firestore";
-import { userState } from "../../atom_state/userAtom";
+import { userState } from "@/../../atom_state/userAtom";
+import { useRouter } from "next/navigation";
 
 const FirebasePost = ({ post, id }: any) => {
   const { user, setIsLoggedOut, setUser } = useUserAuth();
@@ -28,6 +29,7 @@ const FirebasePost = ({ post, id }: any) => {
   const [postId, setPostId] = useRecoilState(postIdState);
   const [currentUser, setCurrentUser] = useRecoilState(userState);
   const [comments, setComments] = useState([]);
+  const router = useRouter();
 
   useEffect(() => {
     const unsubscribe = onSnapshot(
@@ -52,9 +54,9 @@ const FirebasePost = ({ post, id }: any) => {
   async function likePost() {
     if (currentUser.uid) {
       if (hasLiked) {
-        await deleteDoc(doc(db, "posts", post.id, "likes", currentUser?.uid));
+        await deleteDoc(doc(db, "posts", id, "likes", currentUser?.uid));
       } else {
-        await setDoc(doc(db, "posts", post.id, "likes", currentUser?.uid), {
+        await setDoc(doc(db, "posts", id, "likes", currentUser?.uid), {
           username: currentUser?.firstName,
         });
         console.log(currentUser?.uid);
@@ -65,9 +67,10 @@ const FirebasePost = ({ post, id }: any) => {
   async function deletePost() {
     if (window.confirm("Are you sure you want to delete this post?")) {
       deleteDoc(doc(db, "posts", id));
-      if (post.data().image) {
+      if (post?.image) {
         deleteObject(ref(storage, `posts/${id}/image`));
       }
+      router.push("/home");
     }
   }
 
@@ -95,16 +98,14 @@ const FirebasePost = ({ post, id }: any) => {
             <div className={styles.post_header}>
               {/* post user info */}
               <div className={styles.post_info}>
-                <h4 className={styles.user_styles}>
-                  {post?.data()?.firstName}{" "}
-                </h4>
+                <h4 className={styles.user_styles}>{post?.firstName} </h4>
                 <span className={styles.userNick}>
                   {" "}
                   {`@`}
-                  {post?.data()?.email}
+                  {post?.email}
                 </span>
                 <span className={styles.timestamp}>
-                  ・<Moment fromNow>{post?.data()?.timestamp?.toDate()}</Moment>
+                  ・<Moment fromNow>{post?.timestamp?.toDate()}</Moment>
                 </span>
               </div>
 
@@ -115,9 +116,9 @@ const FirebasePost = ({ post, id }: any) => {
             {/* post text */}
 
             <div className={styles.post_user_container}>
-              <p className={styles.text}>{post?.data()?.text}</p>
+              <p className={styles.text}>{post?.text}</p>
             </div>
-            <img src={post?.data()?.image} className={styles.uploadedImage} />
+            <img src={post?.image} className={styles.uploadedImage} />
 
             {/* post image */}
 
@@ -169,7 +170,7 @@ const FirebasePost = ({ post, id }: any) => {
                 )}
               </div>
               <FaChartBar />
-              {currentUser?.uid === post?.data()?.uid && (
+              {currentUser?.uid === post?.uid && (
                 <FaRegTrashAlt onClick={deletePost} />
               )}
             </div>

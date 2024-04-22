@@ -4,7 +4,7 @@ import React from "react";
 import styles from "./page.module.css";
 import Image from "next/image";
 
-import useCreateAccAndAddUserToStore from "../hooks/useCreateAccAndAddUserToStore";
+import useCreateAccAndAddUserToStore from "../../hooks/useCreateAccAndAddUserToStore";
 
 const CreateAccount = () => {
   const {
