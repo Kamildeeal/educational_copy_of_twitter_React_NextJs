@@ -44,7 +44,7 @@ const HomePage = ({ newsResults }: any) => {
             if (docSnap.exists()) {
               const userData = docSnap.data() as UserData;
               setCurrentUser(userData);
-              console.log(currentUser);
+              // console.log(currentUser);
             }
           };
           fetchUser();
@@ -52,23 +52,6 @@ const HomePage = ({ newsResults }: any) => {
       }
     });
   }, [auth]);
-  // useEffect(() => {
-  //   const authUnsubscribe = onAuthStateChanged(auth, (currentUser) => {
-  //     if (currentUser) {
-  //       setIsLoggedOut(false);
-  //       const userDocRef = doc(db, "users", currentUser.uid);
-  //       onSnapshot(userDocRef, (doc) => {
-  //         // if (doc.exists()) {
-  //         setUser(doc.data());
-  //       });
-  //     } else {
-  //       setIsLoggedOut(true);
-  //     }
-  //   });
-  //   return () => {
-  //     authUnsubscribe();
-  //   };
-  // }, [setIsLoggedOut]);
 
   return (
     <>
@@ -110,32 +93,3 @@ const HomePage = ({ newsResults }: any) => {
 };
 
 export default HomePage;
-
-// type Repo = {
-//   article: string;
-//   title: string;
-// };
-
-// export async function getStaticProps() {
-//   const response = await fetch(
-//     "https://saurav.tech/NewsAPI/everything/cnn.json"
-//   );
-//   const newsData = await response.json();
-
-//   return {
-//     props: {
-//       newsData,
-//     },
-//   };
-// }
-
-// export async function getStaticProps() {
-//   const newsResults = await fetch(
-//     "https://saurav.tech/NewsAPI/everything/cnn.json"
-//   ).then((res) => res.json());
-//   return {
-//     props: {
-//       newsResults,
-//     },
-//   };
-// }

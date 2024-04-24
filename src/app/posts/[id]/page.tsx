@@ -11,6 +11,7 @@ import {
   collection,
   doc,
   getDoc,
+  getDocs,
   onSnapshot,
   orderBy,
   query,
@@ -26,6 +27,7 @@ import Head from "next/head";
 import { FaArrowLeft } from "react-icons/fa6";
 import FirebasePost from "@/compontents/FirebasePost";
 import PostCompontent from "@/compontents/postPageCompontents/PostComponent";
+import UserComment from "@/compontents/postPageCompontents/UserComment";
 
 type NewsData = {
   newsData: any[];
@@ -48,11 +50,9 @@ const PostPage = ({ newsResults }: any) => {
   const idToString: any = useParams();
   const id = idToString.id;
   const [post, setPost] = useState<any>([]);
-  const [comments, setComments] = useState([]);
+  const [comments, setComments] = useState<any>([]);
 
-  console.log(id);
-  console.log(post?.firstName);
-
+  //fetch post
   useEffect(() => {
     const unsubscribe = onSnapshot(doc(db, "posts", id), (snapshot: any) => {
       setPost(snapshot.data());
@@ -61,18 +61,34 @@ const PostPage = ({ newsResults }: any) => {
     return () => unsubscribe();
   }, [db, id]);
 
+  // fetch post's comments
   useEffect(() => {
     onSnapshot(
       query(
         collection(db, "posts", id, "comments"),
         orderBy("timestamp", "desc")
       ),
-      (snapshot: any) => setComments(snapshot.docs)
+      (snapshot) => setComments(snapshot.docs)
     );
   }, [db, id]);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const querySnapshot = await getDocs(
+        query(
+          collection(db, "posts", id, "comments"),
+          orderBy("timestamp", "desc")
+        )
+      );
+      const commentsData = querySnapshot.docs;
+      setComments(commentsData);
+    };
+
+    fetchData(); // Wywołanie funkcji asynchronicznej
+  }, [db, id]);
+
   return (
-    <>
+    <body className={styles.body}>
       <div className={styles.container}>
         <Head>
           <title>Post</title>
@@ -112,8 +128,15 @@ const PostPage = ({ newsResults }: any) => {
             </button>
           </div>
           <PostCompontent post={post} id={id} />
-
-          {/* <FirebasePost post={post} id={id} /> */}
+          {comments.length > 0 &&
+            comments.map((comment: any) => (
+              <UserComment
+                key={comment.id}
+                comment={comment.data()}
+                commentId={comment.id}
+                currentPostId={id}
+              />
+            ))}
         </div>
         <div className={styles.right_wing}>
           <RightSideBar />
@@ -121,7 +144,7 @@ const PostPage = ({ newsResults }: any) => {
         {/* Modal */}
         <CommentModal />
       </div>
-    </>
+    </body>
   );
 };
 

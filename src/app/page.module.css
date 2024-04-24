@@ -1,17 +1,20 @@
+.body {
+  background: black;
+}
 .wrapperAll {
   display: flex;
   flex-direction: column;
-  background-color: black;
+  background: black;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .container {
   display: flex;
   flex-direction: row;
-  background-color: black;
+  background: black;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -199,7 +202,7 @@
 
 .buttonLogin {
   border-color: rgb(83, 100, 113);
-  background-color: rgba(0, 0, 0);
+  background: rgba(0, 0, 0);
   max-width: 380px;
   transition-duration: 0.2s;
   user-select: none;
@@ -253,13 +256,13 @@
   align-items: stretch;
   min-height: 48px;
   position: relative;
-  background-color: black;
+  background: black;
 }
 
 .wrapperAll footer > span {
   font-size: 15px;
   margin-left: 10px;
-  background-color: black;
+  background: black;
 }
 .wrapperAll footer > span > :first-child {
   margin-left: 0px;

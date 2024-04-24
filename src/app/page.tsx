@@ -28,6 +28,7 @@ const EntryScreen = () => {
               <Image
                 src="/logo.svg"
                 className={styles.image}
+                layout="responsive"
                 alt="logo"
                 width={340}
                 height={308}
