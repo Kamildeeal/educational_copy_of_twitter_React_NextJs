@@ -115,7 +115,8 @@
   color: grey;
 }
 
-.follow_section > h4 > p {
+.follow_section > h4 > p,
+.news > h4 > p {
   color: grey;
   font-size: 12px;
   margin: 0px;

@@ -19,6 +19,7 @@ import {
 } from "firebase/firestore";
 import { userState } from "../../atom_state/userAtom";
 import { useRouter } from "next/navigation";
+import { SyncLoader } from "react-spinners";
 
 export default function CommentModal() {
   const [open, setOpen] = useRecoilState(modalState);
@@ -31,7 +32,7 @@ export default function CommentModal() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [input, setInput] = useState("");
   const router = useRouter();
-
+  const [isLoading, isSetLoading] = useState(false);
   useEffect(() => {
     onSnapshot(doc(db, "posts", postId), (snapshot: any) => {
       setPost(snapshot);
@@ -52,6 +53,7 @@ export default function CommentModal() {
     setLoading(false);
   };
   async function sendComment() {
+    isSetLoading(true);
     await addDoc(collection(db, "posts", postId, "comments"), {
       userComment: input,
       userName: currentUser.firstName,
@@ -63,6 +65,7 @@ export default function CommentModal() {
     setOpen(false);
     setInput("");
     router.push(`/posts/${postId}`);
+    isSetLoading(false);
   }
 
   return (
@@ -124,6 +127,16 @@ export default function CommentModal() {
               width={50}
               height={50}
             />
+            {isLoading && (
+              <div className={styles.overlay}>
+                <SyncLoader
+                  color="white"
+                  loading={isLoading}
+                  size={15}
+                  className={styles.loader}
+                />
+              </div>
+            )}
 
             <div className={styles.modal_comment_reply_area}>
               <div className={styles.modal_comment_current_user_info_container}>
@@ -145,7 +158,7 @@ export default function CommentModal() {
           </div>
           <div className={styles.comment_modal_footer_container}>
             <div className={styles.comment_modal_footer_emoji_container}>
-              <p
+              {/* <p
                 className={styles.add_photo}
                 onClick={() => {
                   filePickerRef.current.click();
@@ -159,7 +172,7 @@ export default function CommentModal() {
                   accept=".jpg, .jpeg, .png, image/jpeg, image/png"
                   onChange={addImageToPost}
                 />
-              </p>
+              </p> */}
               <p className={styles.add_emoji}>😄</p>
             </div>
             <button className={styles.post_btn} onClick={sendComment}>

@@ -8,27 +8,33 @@ import { auth } from "@/firebase/config";
 import { useRouter } from "next/navigation";
 import { useUserAuth } from "@/context/userAuth";
 import Swal from "sweetalert2";
+import TextField from "@mui/material/TextField";
+import { SyncLoader } from "react-spinners";
 
 const LoginModal = () => {
   const { currentUser, setCurrentUser, setUser } = useUserAuth();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const router = useRouter();
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    setLoading(true);
 
     let runfinally = true;
     try {
+      setLoading(true);
       const user = await signInWithEmailAndPassword(auth, email, password);
       setPassword("");
       setEmail("");
+      setLoading(false);
       return user.user;
     } catch (error) {
       runfinally = false;
-      alert(error);
+      setLoading(false);
       Swal.fire({
         icon: "error",
         title: "Error!",
@@ -37,6 +43,7 @@ const LoginModal = () => {
       });
     } finally {
       if (runfinally) router.push("/home");
+      setLoading(false);
     }
   };
 
@@ -73,19 +80,34 @@ const LoginModal = () => {
               <p className={styles.spanP}>or</p>
               <span className={styles.spanOr}></span>
             </div>
-
+            {loading && (
+              <div className={styles.overlay}>
+                <SyncLoader
+                  color="white"
+                  loading={loading}
+                  size={15}
+                  className={styles.loader}
+                />
+              </div>
+            )}
             <div className={styles.form}>
-              <input
+              <TextField
                 type="mail"
-                value={email}
+                className={styles.textField}
+                id="outlined-basic"
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="Email address"
+                value={email}
+                variant="outlined"
+                label="Email address"
               />
-              <input
+              <TextField
                 type="password"
-                value={password}
+                className={styles.textField}
+                id="outlined-basic"
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password"
+                value={password}
+                variant="outlined"
+                label="Password"
               />
               <button
                 className={styles.buttonNext}

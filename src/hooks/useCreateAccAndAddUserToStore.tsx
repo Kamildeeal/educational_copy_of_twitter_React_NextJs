@@ -13,11 +13,14 @@ export default function useCreateAccAndAddUserToStore() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   const handleSignUp = async (e: any) => {
     e.preventDefault();
+    setLoading(true);
 
     if (!firstName || !email || !password || !confirmPassword) {
+      setLoading(false);
       return Swal.fire({
         icon: "error",
         title: "Error!",
@@ -27,6 +30,7 @@ export default function useCreateAccAndAddUserToStore() {
     }
 
     if (password.length < 6 || confirmPassword.length < 6) {
+      setLoading(false);
       return Swal.fire({
         icon: "error",
         title: "Error!",
@@ -36,6 +40,7 @@ export default function useCreateAccAndAddUserToStore() {
     }
 
     if (password != confirmPassword) {
+      setLoading(false);
       return Swal.fire({
         icon: "error",
         title: "Error!",
@@ -81,6 +86,7 @@ export default function useCreateAccAndAddUserToStore() {
       });
       return;
     } finally {
+      setLoading(false);
       if (runfinally) router.push("/login");
     }
   };
@@ -96,5 +102,6 @@ export default function useCreateAccAndAddUserToStore() {
     router,
     setConfirmPassword,
     confirmPassword,
+    loading,
   };
 }

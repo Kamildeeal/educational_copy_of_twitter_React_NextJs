@@ -273,6 +273,22 @@
   text-decoration: underline;
 }
 
+.loader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(8, 8, 8, 0.5);
+}
+
 @media only screen and (max-width: 1002px) {
   .container {
     display: flex;

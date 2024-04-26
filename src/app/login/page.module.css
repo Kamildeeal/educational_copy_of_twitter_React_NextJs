@@ -16,15 +16,11 @@
   flex-direction: column;
   align-items: center;
 }
-
-.overlay {
-  background-color: rgba(0, 0, 0, 0.247);
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 2;
+.textField {
+  width: 300px;
+  height: 15px;
+  border-radius: 8px;
+  margin-bottom: 50px;
 }
 
 .header {
@@ -59,14 +55,6 @@
   flex-direction: column;
 }
 
-.modal input {
-  width: 300px;
-  height: 50px;
-  margin-left: 0px;
-  padding-left: 0px;
-  padding-left: 7px;
-}
-
 .buttonLoginWith,
 .buttonNext {
   border-color: rgb(51, 54, 57);
@@ -78,7 +66,6 @@
   transition-property: background-color, box-shadow;
   min-height: 36px;
   outline-style: none;
-  margin-top: 10px;
   margin-top: 10px;
   cursor: pointer;
   width: 300px;
@@ -113,7 +100,9 @@
   background-color: black;
   color: white;
   font-size: 1.07rem;
-  margin: 20px;
+}
+.buttonNext:hover {
+  background-color: rgba(0, 0, 0, 0.842);
 }
 
 .orContainer {
@@ -158,4 +147,20 @@
   flex-direction: column;
   justify-content: center;
   color: white;
+}
+
+.loader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(8, 8, 8, 0.5);
 }

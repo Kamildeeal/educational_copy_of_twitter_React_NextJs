@@ -147,7 +147,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 1000; /* upewnij się, że loader będzie na wierzchu */
+  z-index: 1000;
 }
 .overlay {
   position: fixed;
@@ -155,7 +155,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(8, 8, 8, 0.5); /* szary kolor z przezroczystością */
+  background-color: rgba(8, 8, 8, 0.5);
 }
 
 .remove_imported_img {

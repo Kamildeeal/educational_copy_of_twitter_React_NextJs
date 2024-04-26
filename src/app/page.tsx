@@ -5,19 +5,31 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useUserAuth } from "@/context/userAuth";
 import { RecoilRoot } from "recoil";
+import { SyncLoader } from "react-spinners";
 
 const EntryScreen = () => {
   const { isLoggedOut } = useUserAuth();
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   // HELPER FOR ROUTING LOGGED USERS
-  useEffect(() => {
-    if (isLoggedOut) {
-      router.push("/");
-    } else {
-      router.push("/home");
-    }
-  }, [isLoggedOut]);
+  // useEffect(() => {
+  //   if (isLoggedOut) {
+  //     router.push("/");
+  //   } else {
+  //     router.push("/home");
+  //   }
+  // }, [isLoggedOut]);
+
+  const handleSignupClick = () => {
+    setLoading(true);
+    router.push("/signup");
+  };
+
+  const handleLoginClick = () => {
+    setLoading(true);
+    router.push("/login");
+  };
 
   return (
     <>
@@ -34,6 +46,16 @@ const EntryScreen = () => {
                 height={308}
               />
             </div>
+            {loading && (
+              <div className={styles.overlay}>
+                <SyncLoader
+                  color="white"
+                  loading={loading}
+                  size={15}
+                  className={styles.loader}
+                />
+              </div>
+            )}
             <div className={styles.contentContainer}>
               <div className={styles.h1container}>
                 <h1>The latest news from around the world</h1>
@@ -47,7 +69,7 @@ const EntryScreen = () => {
                 <span className={styles.spanOr}></span>
               </div>
               <button
-                onClick={() => router.push("/signup")}
+                onClick={handleSignupClick}
                 className={styles.buttonCreateAccount}
               >
                 Create account
@@ -57,10 +79,7 @@ const EntryScreen = () => {
                 Policy, including the Cookie Policy.
               </p>
               <h4>Already have an account?</h4>
-              <button
-                onClick={() => router.push("/login")}
-                className={styles.buttonLogin}
-              >
+              <button onClick={handleLoginClick} className={styles.buttonLogin}>
                 <p>Login</p>
               </button>
             </div>
