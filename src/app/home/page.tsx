@@ -60,24 +60,27 @@ const HomePage = ({ newsResults }: any) => {
           <Sidebar />
         </div>
         <div className={styles.center}>
-          HomePage
-          <button
-            onClick={() => {
-              auth.signOut();
-              setCurrentUser({
-                email: "",
-                uid: "",
-                image: "",
-                text: "",
-                timestamp: "",
-                firstName: "",
-              });
-              sessionStorage.removeItem("user");
-              router.push("/");
-            }}
-          >
-            Log out
-          </button>
+          <div className={styles.center_header}>
+            <p>HomePage</p>
+            <button
+              className={styles.center_button_logout}
+              onClick={() => {
+                auth.signOut();
+                setCurrentUser({
+                  email: "",
+                  uid: "",
+                  image: "",
+                  text: "",
+                  timestamp: "",
+                  firstName: "",
+                });
+                sessionStorage.removeItem("user");
+                router.push("/");
+              }}
+            >
+              Logout
+            </button>
+          </div>
           <MiddleInput />
           <MiddlePost />
         </div>

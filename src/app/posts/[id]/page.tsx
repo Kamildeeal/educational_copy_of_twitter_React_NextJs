@@ -110,6 +110,7 @@ const PostPage = ({ newsResults }: any) => {
               <b>Post</b>
             </div>
             <button
+              className={styles.center_button_logout}
               onClick={() => {
                 auth.signOut();
                 setCurrentUser({
@@ -124,7 +125,7 @@ const PostPage = ({ newsResults }: any) => {
                 router.push("/");
               }}
             >
-              Log out
+              Logout
             </button>
           </div>
           <PostCompontent post={post} id={id} />

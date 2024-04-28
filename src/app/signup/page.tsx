@@ -35,6 +35,7 @@ const CreateAccount = () => {
             alt="logo"
             width={30}
             height={30}
+            onClick={() => router.push("/")}
           />
         </div>
         {loading && (
@@ -50,67 +51,50 @@ const CreateAccount = () => {
         <div className={styles.body}>
           <h2>Create Account</h2>
           <div className={styles.form}>
-            {/* <input
-              type="text"
-              placeholder="First Name"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-            /> */}
-            <TextField
-              type="text"
-              className={styles.textField}
-              id="outlined-basic"
-              onChange={(e) => setFirstName(e.target.value)}
-              value={firstName}
-              variant="outlined"
-              label="First name"
-            />
-            {/* <input
-              type="email"
-              placeholder="Email address"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            /> */}
-            <TextField
-              className={styles.textField}
-              type="email"
-              id="outlined-basic"
-              onChange={(e) => setEmail(e.target.value)}
-              value={email}
-              variant="outlined"
-              label="Email address"
-            />
-            {/* <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            /> */}
-            <TextField
-              className={styles.textField}
-              type="password"
-              id="outlined-basic"
-              onChange={(e) => setPassword(e.target.value)}
-              value={password}
-              variant="outlined"
-              label="Password"
-            />
-
-            {/* <input
-              type="password"
-              placeholder="Confirm-password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            /> */}
-            <TextField
-              type="password"
-              className={styles.textField}
-              id="outlined-basic"
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              value={confirmPassword}
-              variant="outlined"
-              label="Confirm-password"
-            />
+            <div className={styles.textField}>
+              <TextField
+                type="text"
+                className={styles.textField}
+                id="outlined-basic"
+                onChange={(e) => setFirstName(e.target.value)}
+                value={firstName}
+                variant="outlined"
+                label="First name"
+              />
+            </div>
+            <div className={styles.textField}>
+              <TextField
+                className={styles.textField}
+                type="email"
+                id="outlined-basic"
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
+                variant="outlined"
+                label="Email address"
+              />
+            </div>
+            <div className={styles.textField}>
+              <TextField
+                className={styles.textField}
+                type="password"
+                id="outlined-basic"
+                onChange={(e) => setPassword(e.target.value)}
+                value={password}
+                variant="outlined"
+                label="Password"
+              />
+            </div>
+            <div className={styles.textField}>
+              <TextField
+                type="password"
+                className={styles.textField}
+                id="outlined-basic"
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                value={confirmPassword}
+                variant="outlined"
+                label="Confirm-password"
+              />
+            </div>
             <button className={styles.buttonNext} onClick={handleSignUp}>
               Next
             </button>

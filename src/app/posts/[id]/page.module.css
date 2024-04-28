@@ -63,3 +63,24 @@
   background-color: rgba(128, 128, 128, 0.253);
   border-radius: 50%;
 }
+
+.center_button_logout {
+  background-color: rgb(19, 20, 20);
+  border: none;
+  height: 42px;
+  width: 94px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 15px;
+  margin-top: 10px;
+  transition: 0.1s ease-in-out;
+}
+.center_button_logout:hover {
+  background-color: rgba(19, 20, 20, 0.452);
+}

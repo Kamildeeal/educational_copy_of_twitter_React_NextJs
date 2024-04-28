@@ -24,3 +24,14 @@
 .container:hover {
   background-color: rgba(128, 128, 128, 0.226);
 }
+
+@media screen and (max-width: 1160px) {
+  .container img {
+    width: 100px;
+    height: 100px;
+  }
+  .container div h5,
+  .container div h4 {
+    font-size: 0.7rem;
+  }
+}

@@ -4,10 +4,13 @@ import styles from "./Sidebar.module.css";
 import { useUserAuth } from "@/context/userAuth";
 import { useRecoilState } from "recoil";
 import { userState } from "../../atom_state/userAtom";
+import { auth } from "@/firebase/config";
+import { useRouter } from "next/navigation";
 
 export default function Sidebar() {
   const { user, setIsLoggedOut, setUser } = useUserAuth();
   const [currentUser, setCurrentUser] = useRecoilState(userState);
+  const router = useRouter();
   return (
     <div className={styles.positionOfSidebar}>
       <div className={styles.left_wing}>
@@ -22,39 +25,66 @@ export default function Sidebar() {
         </div>
         <div className={styles.icons_container}>
           <span>
-            <b>🏠</b> Home
+            <b>🏠</b> <p>Home</p>
           </span>
           <span>
-            <b>🔍</b> Explore
+            <b>🔍</b> <p>Explore</p>
           </span>
           <span>
-            <b>🔔</b> Notifications
+            <b>🔔</b> <p>Notifications</p>
           </span>
           <span>
-            <b>✉️</b> Messages
+            <b>✉️</b> <p>Messages</p>
           </span>
           <span>
-            <b>📋</b> Lists
+            <b>📋</b>
+            <p>Lists</p>
           </span>
           <span>
-            <b>📜</b> Bookmarks
+            <b>📜</b> <p>Bookmarks</p>
           </span>
           <span>
-            <b>👥</b> Communities
+            <b>👥</b>
+            <p>Communities</p>
           </span>
           <span>
-            <b>𝕏</b> Premium
+            <b className={styles.icon_twitter}>𝕏</b> <p>Premium</p>
           </span>
           <span>
-            <b>👤</b> Profile
+            <b>👤</b> <p>Profile</p>
           </span>
           <span>
-            <b>➕</b>More
+            <b>➕</b>
+            <p>More</p>
           </span>
           <button>Post</button>
         </div>
         <div className={styles.user_info}>
-          Mr {currentUser?.firstName} {currentUser?.email}
+          <div>
+            <p>{currentUser?.firstName}</p>
+            <text>
+              {" @"}
+              {currentUser?.email}{" "}
+            </text>
+          </div>
+          <button
+            className={styles.button_logout}
+            onClick={() => {
+              auth.signOut();
+              setCurrentUser({
+                email: "",
+                uid: "",
+                image: "",
+                text: "",
+                timestamp: "",
+                firstName: "",
+              });
+              sessionStorage.removeItem("user");
+              router.push("/");
+            }}
+          >
+            Logout
+          </button>
         </div>
       </div>
     </div>

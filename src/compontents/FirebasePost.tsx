@@ -20,6 +20,7 @@ import {
 } from "firebase/firestore";
 import { userState } from "../../atom_state/userAtom";
 import { useRouter } from "next/navigation";
+import { SyncLoader } from "react-spinners";
 
 const FirebasePost = ({ post, id }: any) => {
   const { user, setIsLoggedOut, setUser } = useUserAuth();
@@ -30,6 +31,7 @@ const FirebasePost = ({ post, id }: any) => {
   const [currentUser, setCurrentUser] = useRecoilState(userState);
   const [comments, setComments] = useState([]);
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const unsubscribe = onSnapshot(
@@ -87,6 +89,16 @@ const FirebasePost = ({ post, id }: any) => {
           />
 
           {/* right side */}
+          {loading && (
+            <div className={styles.overlay}>
+              <SyncLoader
+                color="white"
+                loading={loading}
+                size={15}
+                className={styles.loader}
+              />
+            </div>
+          )}
 
           <div className={styles.post_content}>
             {/* Header */}
@@ -111,20 +123,26 @@ const FirebasePost = ({ post, id }: any) => {
             {/* post text */}
             <div className={styles.post_user_container}>
               <p
-                onClick={() => router.push(`/posts/${id}`)}
+                onClick={() => {
+                  setLoading(true);
+                  router.push(`/posts/${id}`);
+                }}
                 className={styles.text}
               >
                 {post?.data()?.text}
               </p>
             </div>
             <img
-              onClick={() => router.push(`/posts/${id}`)}
+              onClick={() => {
+                setLoading(true);
+                router.push(`/posts/${id}`);
+              }}
               src={post?.data()?.image}
               className={styles.uploadedImage}
             />
             {/* {icons} */}
             <div className={styles.icons}>
-              <div className={styles.container_icon_heart}>
+              <div className={styles.container_icon_chat}>
                 <FaRocketchat
                   onClick={() => {
                     setOpen(!open);
@@ -135,7 +153,9 @@ const FirebasePost = ({ post, id }: any) => {
                   <span className="text-sm">{comments.length}</span>
                 )}
               </div>
-              <BiRepost />
+              <div className={styles.container_icon_repost}>
+                <BiRepost />
+              </div>
               <div className={styles.container_icon_heart}>
                 {hasLiked ? (
                   <FaHeart
@@ -163,9 +183,14 @@ const FirebasePost = ({ post, id }: any) => {
                   <span className={styles.like_counter}> {likes.length}</span>
                 )}
               </div>
-              <FaChartBar />
+              <div className={styles.container_icon_chart}>
+                <FaChartBar />
+              </div>
               {currentUser?.uid === post?.data()?.uid && (
-                <FaRegTrashAlt onClick={deletePost} />
+                <FaRegTrashAlt
+                  onClick={deletePost}
+                  className={styles.container_icon_trashcan}
+                />
               )}
             </div>
           </div>

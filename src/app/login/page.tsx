@@ -30,11 +30,9 @@ const LoginModal = () => {
       const user = await signInWithEmailAndPassword(auth, email, password);
       setPassword("");
       setEmail("");
-      setLoading(false);
       return user.user;
     } catch (error) {
       runfinally = false;
-      setLoading(false);
       Swal.fire({
         icon: "error",
         title: "Error!",
@@ -43,7 +41,6 @@ const LoginModal = () => {
       });
     } finally {
       if (runfinally) router.push("/home");
-      setLoading(false);
     }
   };
 
@@ -91,24 +88,28 @@ const LoginModal = () => {
               </div>
             )}
             <div className={styles.form}>
-              <TextField
-                type="mail"
-                className={styles.textField}
-                id="outlined-basic"
-                onChange={(e) => setEmail(e.target.value)}
-                value={email}
-                variant="outlined"
-                label="Email address"
-              />
-              <TextField
-                type="password"
-                className={styles.textField}
-                id="outlined-basic"
-                onChange={(e) => setPassword(e.target.value)}
-                value={password}
-                variant="outlined"
-                label="Password"
-              />
+              <div className={styles.textField}>
+                <TextField
+                  type="mail"
+                  className={styles.textField}
+                  id="outlined-basic"
+                  onChange={(e) => setEmail(e.target.value)}
+                  value={email}
+                  variant="outlined"
+                  label="Email address"
+                />
+              </div>
+              <div className={styles.textField}>
+                <TextField
+                  type="password"
+                  className={styles.textField}
+                  id="outlined-basic"
+                  onChange={(e) => setPassword(e.target.value)}
+                  value={password}
+                  variant="outlined"
+                  label="Password"
+                />
+              </div>
               <button
                 className={styles.buttonNext}
                 type="submit"
@@ -120,7 +121,7 @@ const LoginModal = () => {
 
             <div className={styles.buttonLoginWith}>Forgot password?</div>
             <p className={styles.footer}>
-              You don't have accout yet? {""}
+              You dont have accout yet? {""}
               <span
                 className={styles.register}
                 onClick={() => router.push("/signup")}

@@ -1,5 +1,6 @@
 .widgets {
   margin-left: 15px;
+  max-width: 370px;
 }
 .header_background {
   background-color: white;
@@ -120,4 +121,59 @@
   color: grey;
   font-size: 12px;
   margin: 0px;
+}
+
+@media screen and (max-width: 1160px) {
+  .news,
+  .follow_section {
+    border: 1px solid rgba(128, 128, 128, 0.158);
+    background-color: rgba(128, 128, 128, 0.158);
+    margin-top: 85px;
+    margin-left: 15px;
+    width: 250px;
+    border-radius: 10px;
+  }
+
+  .user_info {
+    position: relative;
+    left: -5px;
+    margin-right: 0px;
+  }
+
+  .user_info h4,
+  .user_info h5 {
+    font-size: 0.7rem;
+  }
+
+  .container_follow_user {
+    justify-content: space-between;
+    margin-right: 0px;
+  }
+
+  .container_follow_user > img {
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-right: 0px;
+  }
+
+  .container_follow_user img {
+    width: 35px;
+    height: 35px;
+    padding: 0px;
+  }
+  .btn_loadmore {
+    width: auto;
+    height: auto;
+  }
+  .container_follow_user button {
+    width: 45px;
+    height: 26px;
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 1040px) {
+  .widgets {
+    display: none;
+  }
 }
