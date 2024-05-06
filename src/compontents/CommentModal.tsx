@@ -70,6 +70,16 @@ export default function CommentModal() {
 
   return (
     <div>
+      {isLoading && (
+        <div className={styles.overlay}>
+          <SyncLoader
+            color="white"
+            loading={isLoading}
+            size={15}
+            className={styles.loader}
+          />
+        </div>
+      )}
       {open && (
         <Modal
           isOpen={open}
@@ -127,16 +137,6 @@ export default function CommentModal() {
               width={50}
               height={50}
             />
-            {isLoading && (
-              <div className={styles.overlay}>
-                <SyncLoader
-                  color="white"
-                  loading={isLoading}
-                  size={15}
-                  className={styles.loader}
-                />
-              </div>
-            )}
 
             <div className={styles.modal_comment_reply_area}>
               <div className={styles.modal_comment_current_user_info_container}>

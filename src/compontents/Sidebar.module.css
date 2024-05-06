@@ -28,6 +28,7 @@
   align-items: flex-end;
   width: 210px;
   margin: 15px;
+  transition: 1s ease-in-out;
 }
 .icons_container span {
   display: flex;
@@ -79,6 +80,7 @@
   direction: ltr;
   font-family: "Roboto-Regular", arial, sans-serif;
   font-weight: 600;
+  transition: 1s ease-in-out;
 }
 
 .icon_twitter {
@@ -111,7 +113,7 @@
   cursor: pointer;
   margin-bottom: 15px;
   margin-top: 10px;
-  transition: 0.1s ease-in-out;
+  transition: 0.3s ease-in-out;
 }
 .button_logout:hover {
   background-color: rgba(19, 20, 20, 0.452);
@@ -148,10 +150,18 @@
     width: 30px;
     margin-right: 46px;
     padding-left: 30px;
+    position: relative;
+  }
+
+  .icons_container span:hover {
+    background: none;
+    border-radius: 6px;
+    box-shadow: none;
+    left: 10px;
   }
   .icons_container {
     justify-content: center;
-    width: 80px;
+    width: 30px;
   }
   .icons_container button {
     display: none;
@@ -183,6 +193,6 @@
     height: 40px;
     width: 74px;
     font-size: 0.8rem;
-    margin-left: 30px;
+    margin-left: 0px;
   }
 }

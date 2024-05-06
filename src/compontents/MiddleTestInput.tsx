@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import styles from "./MiddleInput.module.css";
+import styles from "./MiddleTestInput.module.css";
 import Image from "next/image";
 import example_avatar from "../../public/example_avatar.png";
 import {
@@ -17,7 +17,7 @@ import SyncLoader from "react-spinners/SyncLoader";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { userState } from "../../atom_state/userAtom";
 
-export default function MiddleInput() {
+export default function MiddleTestInput() {
   const [input, setInput] = useState("");
   const filePickerRef = useRef<any>(null);
   const [selectedFile, setSelectedFile] = useState(null);
@@ -82,7 +82,7 @@ export default function MiddleInput() {
   };
 
   return (
-    <div className={styles.wrapper}>
+    <>
       {loading && (
         <div className={styles.overlay}>
           <SyncLoader
@@ -93,76 +93,76 @@ export default function MiddleInput() {
           />
         </div>
       )}
-      <div className={styles.input_box}>
-        <div className={styles.cointainer}>
-          <div className={styles.nav_btns}>
+      <div className={styles.wrapper}>
+        <div className={styles.input_box}>
+          <div className={styles.cointainer}>
             <button className={styles.set_btn}>For you</button>
             <button className={styles.set_btn}>Following</button>
             <button className={styles.gear_btn}>x</button>
           </div>
-        </div>
-        <div className={styles.input_container}>
-          <Image
-            src={example_avatar}
-            height={50}
-            width={50}
-            alt="user_avatar"
-            className={styles.user_img}
-          />
-          <div className={styles.container_text}>
-            <textarea
-              className={styles.textarea}
-              placeholder="What's happening?"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-            ></textarea>
-            {selectedFile && (
-              <div className={styles.container_uploaded_img}>
-                <div className={styles.loader}></div>
-                <p
-                  onClick={() => setSelectedFile(null)}
-                  className={styles.remove_imported_img}
-                >
-                  X
-                </p>
+          <div className={styles.input_container}>
+            <Image
+              src={example_avatar}
+              height={50}
+              width={50}
+              alt="user_avatar"
+              className={styles.user_img}
+            />
+            <div className={styles.container_text}>
+              <textarea
+                className={styles.textarea}
+                placeholder="What's happening?"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+              ></textarea>
+              {selectedFile && (
+                <div className={styles.container_uploaded_img}>
+                  <div className={styles.loader}></div>
+                  <p
+                    onClick={() => setSelectedFile(null)}
+                    className={styles.remove_imported_img_btn}
+                  >
+                    X
+                  </p>
 
-                <img
-                  className={styles.uploaded_img}
-                  src={selectedFile}
-                  alt="foto"
-                />
-              </div>
-            )}
-            <div className={styles.container_emojis}>
-              <div className={styles.container_left}>
-                <p
-                  className={styles.add_photo}
-                  onClick={() => {
-                    filePickerRef.current.click();
-                  }}
-                >
-                  🖼️
-                  <input
-                    type="file"
-                    hidden
-                    ref={filePickerRef}
-                    accept=".jpg, .jpeg, .png, image/jpeg, image/png"
-                    onChange={addImageToPost}
+                  <img
+                    className={styles.uploaded_img}
+                    src={selectedFile}
+                    alt="foto"
                   />
-                </p>
-                <p className={styles.add_emoji}>😄</p>
+                </div>
+              )}
+              <div className={styles.container_emojis}>
+                <div className={styles.container_left}>
+                  <p
+                    className={styles.add_photo}
+                    onClick={() => {
+                      filePickerRef.current.click();
+                    }}
+                  >
+                    🖼️
+                    <input
+                      type="file"
+                      hidden
+                      ref={filePickerRef}
+                      accept=".jpg, .jpeg, .png, image/jpeg, image/png"
+                      onChange={addImageToPost}
+                    />
+                  </p>
+                  <p className={styles.add_emoji}>😄</p>
+                </div>
+                <button
+                  onClick={sendPost}
+                  disabled={!input.trim()}
+                  className={styles.post_btn}
+                >
+                  Post
+                </button>
               </div>
-              <button
-                onClick={sendPost}
-                disabled={!input.trim()}
-                className={styles.post_btn}
-              >
-                Post
-              </button>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

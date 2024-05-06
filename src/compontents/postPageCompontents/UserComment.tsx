@@ -129,14 +129,14 @@ export default function UserComment({
             </div>
             {/* {icons} */}
             <div className={styles.icons}>
-              <div className={styles.container_icon_heart}>
+              {/* <div className={styles.container_icon_heart}>
                 <FaRocketchat
                   onClick={() => {
                     setOpen(!open);
                     setPostId(currentPostId);
                   }}
                 />
-              </div>
+              </div> */}
               <BiRepost />
               <div className={styles.container_icon_heart}>
                 {hasLiked ? (

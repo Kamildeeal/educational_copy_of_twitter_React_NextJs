@@ -77,6 +77,16 @@ const FirebasePost = ({ post, id }: any) => {
 
   return (
     <div>
+      {loading && (
+        <div className={styles.overlay}>
+          <SyncLoader
+            color="white"
+            loading={loading}
+            size={15}
+            className={styles.loader}
+          />
+        </div>
+      )}
       <div className={styles.post_box}>
         <div className={styles.image_user_container}>
           {/* user image */}
@@ -89,16 +99,6 @@ const FirebasePost = ({ post, id }: any) => {
           />
 
           {/* right side */}
-          {loading && (
-            <div className={styles.overlay}>
-              <SyncLoader
-                color="white"
-                loading={loading}
-                size={15}
-                className={styles.loader}
-              />
-            </div>
-          )}
 
           <div className={styles.post_content}>
             {/* Header */}

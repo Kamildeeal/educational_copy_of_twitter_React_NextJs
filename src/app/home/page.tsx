@@ -14,6 +14,7 @@ import RightSideBar from "@/compontents/RightSideBar";
 import CommentModal from "@/compontents/CommentModal";
 import { RecoilRoot, useRecoilState } from "recoil";
 import { userState } from "../../../atom_state/userAtom";
+import MiddleTestInput from "@/compontents/MiddleTestInput";
 
 type NewsData = {
   newsData: any[];
@@ -81,7 +82,8 @@ const HomePage = ({ newsResults }: any) => {
               Logout
             </button>
           </div>
-          <MiddleInput />
+          <MiddleTestInput />
+          {/* <MiddleInput /> */}
           <MiddlePost />
         </div>
         <div className={styles.right_wing}>

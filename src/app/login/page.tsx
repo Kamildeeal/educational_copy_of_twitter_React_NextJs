@@ -46,6 +46,16 @@ const LoginModal = () => {
 
   return (
     <div>
+      {loading && (
+        <div className={styles.overlay}>
+          <SyncLoader
+            color="white"
+            loading={loading}
+            size={15}
+            className={styles.loader}
+          />
+        </div>
+      )}
       <div className={styles.modal}>
         <div className={styles.modal_content}>
           <div className={styles.header}>
@@ -77,16 +87,7 @@ const LoginModal = () => {
               <p className={styles.spanP}>or</p>
               <span className={styles.spanOr}></span>
             </div>
-            {loading && (
-              <div className={styles.overlay}>
-                <SyncLoader
-                  color="white"
-                  loading={loading}
-                  size={15}
-                  className={styles.loader}
-                />
-              </div>
-            )}
+
             <div className={styles.form}>
               <div className={styles.textField}>
                 <TextField

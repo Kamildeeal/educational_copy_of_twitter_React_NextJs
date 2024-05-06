@@ -120,27 +120,20 @@ const FirebasePost = ({ post, id }: any) => {
             </div>
             <img src={post?.image} className={styles.uploadedImage} />
 
-            {/* post image */}
-
-            {/* <Image
-        // onClick={() => router.push(`/posts/${id}`)}
-        className="rounded-2xl mr-2"
-        src={post?.data()?.image}
-        alt=""
-      /> */}
             {/* {icons} */}
             <div className={styles.icons}>
-              <div className={styles.container_icon_heart}>
+              {/* <div className={styles.container_icon_heart}>
                 <FaRocketchat
                   onClick={() => {
                     setOpen(!open);
-                    setPostId(post.id);
+                    console.log(post?.uid);
+                    setPostId(post?.uid);
                   }}
                 />
                 {comments.length > 0 && (
                   <span className="text-sm">{comments.length}</span>
                 )}
-              </div>
+              </div> */}
               <BiRepost />
               <div className={styles.container_icon_heart}>
                 {hasLiked ? (

@@ -16,7 +16,7 @@
 
 .post_content {
   display: flex;
-  flex: 1;
+  width: 100%;
   flex-direction: column;
 }
 
@@ -54,6 +54,8 @@
 
 .uploadedImage {
   max-width: 516px;
+  width: 100%;
+  height: auto;
   border-radius: 10px;
 }
 .icons {
@@ -64,4 +66,7 @@
   margin-right: 20px;
   font-size: 1.3rem;
   color: rgb(87, 86, 86);
+}
+
+@media screen and (max-width: 800px) {
 }
