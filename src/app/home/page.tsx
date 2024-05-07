@@ -56,7 +56,7 @@ const HomePage = ({ newsResults }: any) => {
 
   return (
     <>
-      {user ? (
+      {auth.currentUser ? (
         <div className={styles.container}>
           <div className={styles.left_wing}>
             <Sidebar />

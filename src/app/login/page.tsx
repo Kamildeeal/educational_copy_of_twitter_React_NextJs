@@ -40,6 +40,7 @@ const LoginModal = () => {
         showConfirmButton: true,
       });
     } finally {
+      setLoading(false);
       if (runfinally) router.push("/home");
     }
   };
@@ -125,7 +126,10 @@ const LoginModal = () => {
               You dont have accout yet? {""}
               <span
                 className={styles.register}
-                onClick={() => router.push("/signup")}
+                onClick={() => {
+                  setLoading(true);
+                  router.push("/signup");
+                }}
               >
                 Register
               </span>

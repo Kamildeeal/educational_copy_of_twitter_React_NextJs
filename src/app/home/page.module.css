@@ -28,14 +28,12 @@
   /* grid-template-rows: auto; */
   max-width: 592px;
   width: 100%;
-  border: 3px solid black;
 }
 
 .center_header {
   display: flex;
   max-width: 592px;
   width: 100%;
-  border: 3px solid black;
   justify-content: space-around;
 }
 
