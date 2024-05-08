@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { auth, db } from "@/firebase/config";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
@@ -15,6 +15,7 @@ import CommentModal from "@/compontents/CommentModal";
 import { RecoilRoot, useRecoilState } from "recoil";
 import { userState } from "../../../atom_state/userAtom";
 import MiddleTestInput from "@/compontents/MiddleTestInput";
+import { SyncLoader } from "react-spinners";
 
 type NewsData = {
   newsData: any[];
@@ -33,6 +34,7 @@ const HomePage = ({ newsResults }: any) => {
 
   const router = useRouter();
   const [currentUser, setCurrentUser] = useRecoilState(userState);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -50,9 +52,30 @@ const HomePage = ({ newsResults }: any) => {
           };
           fetchUser();
         }
+        setLoading(false);
       }
+      setLoading(false);
     });
-  }, [auth]);
+  }, [auth, loading]);
+  // question
+  // should I add cleanup function after this compontent "unmounts"(render another compontent)??
+  // like: return () => unsubscribe(); // Cleanup function
+  if (loading) {
+    return (
+      <div>
+        {loading && (
+          <div className={styles.overlay}>
+            <SyncLoader
+              color="white"
+              loading={loading}
+              size={15}
+              className={styles.loader}
+            />
+          </div>
+        )}
+      </div>
+    );
+  }
 
   return (
     <>

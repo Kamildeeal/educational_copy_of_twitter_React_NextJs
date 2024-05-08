@@ -84,7 +84,7 @@ const PostPage = ({ newsResults }: any) => {
       setComments(commentsData);
     };
 
-    fetchData(); // Wywołanie funkcji asynchronicznej
+    fetchData();
   }, [db, id]);
 
   return (
