@@ -33,6 +33,9 @@ export default function CommentModal() {
   const [input, setInput] = useState("");
   const router = useRouter();
   const [isLoading, isSetLoading] = useState(false);
+
+  Modal.setAppElement("*");
+
   useEffect(() => {
     onSnapshot(doc(db, "posts", postId), (snapshot: any) => {
       setPost(snapshot);

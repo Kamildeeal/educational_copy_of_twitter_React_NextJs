@@ -5,11 +5,18 @@ import example_avatar from "../../public/example_avatar.png";
 import { FaRocketchat } from "react-icons/fa6";
 import { FaRegTrashAlt, FaHeart, FaChartBar } from "react-icons/fa";
 import { BiRepost } from "react-icons/bi";
-import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  limit,
+  onSnapshot,
+  orderBy,
+  query,
+} from "firebase/firestore";
 import { db } from "@/firebase/config";
 import ExamplePost from "./ExamplePost";
 import FirebasePost from "./FirebasePost";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, px } from "framer-motion";
 
 interface FirebasePostProps {
   id: number; // Assuming id is of type string
@@ -18,16 +25,41 @@ interface FirebasePostProps {
 
 const MiddlePost = () => {
   const [posts, setPosts] = useState<any>([]);
+
+  const [loading, setLoading] = useState(false);
+  const [pageNumber, setPageNumber] = useState(1);
+  const postsPerPage = 3;
+
   useEffect(
     () =>
       onSnapshot(
-        query(collection(db, "posts"), orderBy("timestamp", "desc")),
+        query(
+          collection(db, "posts"),
+          orderBy("timestamp", "desc"),
+          limit(postsPerPage * pageNumber)
+        ),
         (snapshot: any) => {
-          setPosts(snapshot.docs);
+          setPosts(snapshot.docs.map((doc: any) => doc));
         }
       ),
-    []
+
+    [pageNumber]
   );
+
+  const handleScroll = () => {
+    const scrollY = window.scrollY;
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+    if (scrollY + windowHeight >= documentHeight - 100) {
+      console.log("ding dong");
+      setPageNumber((prevPageNumber) => prevPageNumber + 1);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <div>
@@ -45,6 +77,7 @@ const MiddlePost = () => {
         ))}
         <ExamplePost />
       </AnimatePresence>
+      {loading && <p>Loading...</p>}
     </div>
   );
 };

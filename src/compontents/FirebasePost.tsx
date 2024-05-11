@@ -149,7 +149,7 @@ const FirebasePost = ({ post, id }: any) => {
                     setPostId(post.id);
                   }}
                 />
-                {comments.length > 0 && (
+                {comments.length - 1 > 0 && (
                   <span className="text-sm">{comments.length - 1}</span>
                 )}
               </div>

@@ -131,7 +131,7 @@ const FirebasePost = ({ post, id }: any) => {
                   }}
                 />
                 {comments.length > 0 && (
-                  <span className="text-sm">{comments.length-1}</span>
+                  <span className="text-sm">{comments.length}</span>
                 )}
               </div> */}
               <BiRepost />
