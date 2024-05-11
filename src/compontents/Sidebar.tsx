@@ -6,6 +6,7 @@ import { useRecoilState } from "recoil";
 import { userState } from "../../atom_state/userAtom";
 import { auth } from "@/firebase/config";
 import { useRouter } from "next/navigation";
+import { DiVim } from "react-icons/di";
 
 export default function Sidebar() {
   const { user, setIsLoggedOut, setUser } = useUserAuth();
@@ -62,10 +63,10 @@ export default function Sidebar() {
         <div className={styles.user_info}>
           <div>
             <p>{currentUser?.firstName}</p>
-            <text>
+            <span>
               {" @"}
               {currentUser?.email}{" "}
-            </text>
+            </span>
           </div>
           <button
             className={styles.button_logout}

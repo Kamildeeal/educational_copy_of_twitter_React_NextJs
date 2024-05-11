@@ -37,7 +37,7 @@ const HomePage = ({ newsResults }: any) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         const uid = user.uid;
         if (uid) {
@@ -56,6 +56,7 @@ const HomePage = ({ newsResults }: any) => {
       }
       setLoading(false);
     });
+    return () => unsubscribe();
   }, [auth, loading]);
   // question
   // should I add cleanup function after this compontent "unmounts"(render another compontent)??

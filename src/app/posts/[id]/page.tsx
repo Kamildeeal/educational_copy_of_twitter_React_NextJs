@@ -88,7 +88,7 @@ const PostPage = ({ newsResults }: any) => {
   }, [db, id]);
 
   return (
-    <body className={styles.body}>
+    <div className={styles.body}>
       <div className={styles.container}>
         <Head>
           <title>Post</title>
@@ -145,7 +145,7 @@ const PostPage = ({ newsResults }: any) => {
         {/* Modal */}
         <CommentModal />
       </div>
-    </body>
+    </div>
   );
 };
 
