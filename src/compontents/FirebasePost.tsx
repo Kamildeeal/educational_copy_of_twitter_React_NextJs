@@ -150,7 +150,7 @@ const FirebasePost = ({ post, id }: any) => {
                   }}
                 />
                 {comments.length > 0 && (
-                  <span className="text-sm">{comments.length}</span>
+                  <span className="text-sm">{comments.length - 1}</span>
                 )}
               </div>
               <div className={styles.container_icon_repost}>
@@ -179,8 +179,11 @@ const FirebasePost = ({ post, id }: any) => {
                     }}
                   />
                 )}
-                {likes.length > 0 && (
-                  <span className={styles.like_counter}> {likes.length}</span>
+                {likes.length - 1 > 0 && (
+                  <span className={styles.like_counter}>
+                    {" "}
+                    {likes.length - 1}
+                  </span>
                 )}
               </div>
               <div className={styles.container_icon_chart}>

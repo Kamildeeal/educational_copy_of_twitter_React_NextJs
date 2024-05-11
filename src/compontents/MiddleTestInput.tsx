@@ -7,6 +7,7 @@ import {
   collection,
   doc,
   serverTimestamp,
+  setDoc,
   updateDoc,
 } from "firebase/firestore";
 import { db, storage } from "@/firebase/config";
@@ -39,14 +40,9 @@ export default function MiddleTestInput() {
         firstName: currentUser.firstName,
       });
 
-      // const docRef = await addDoc(collection(db, "posts"), {
-      //   id: currentUser.uid,
-      //   text: input,
-      //   userImg: currentUser.userImg,
-      //   timestamp: serverTimestamp(),
-      //   name: currentUser.name,
-      //   username: currentUser.username,
-      // });
+      const docRefId = doc(db, "posts", docRef.id);
+      await addDoc(collection(docRefId, "likes"), {});
+      await addDoc(collection(docRefId, "comments"), {});
 
       const imageRef = ref(storage, `posts/${docRef.id}/image`);
       if (selectedFile) {
@@ -76,7 +72,7 @@ export default function MiddleTestInput() {
         const fileData = await readerEvent.target.result;
         setSelectedFile(fileData);
       };
-      console.log(selectedFile);
+      // console.log(selectedFile);
     }
     setLoading(false);
   };

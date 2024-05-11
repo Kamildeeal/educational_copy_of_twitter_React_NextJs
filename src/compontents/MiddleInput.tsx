@@ -6,7 +6,9 @@ import {
   addDoc,
   collection,
   doc,
+  getDocs,
   serverTimestamp,
+  setDoc,
   updateDoc,
 } from "firebase/firestore";
 import { db, storage } from "@/firebase/config";
@@ -27,6 +29,14 @@ export default function MiddleInput() {
   // const user = auth.currentUser.providerData[0];
   const currentUser = useRecoilValue(userState);
 
+  // const docRef = await addDoc(collection(db, "posts"), {
+  //   id: currentUser.uid,
+  //   text: input,
+  //   userImg: currentUser.userImg,
+  //   timestamp: serverTimestamp(),
+  //   name: currentUser.name,
+  //   username: currentUser.username,
+  // });
   const sendPost = async () => {
     if (loading) return;
     setLoading(true);
@@ -39,14 +49,11 @@ export default function MiddleInput() {
         firstName: currentUser.firstName,
       });
 
-      // const docRef = await addDoc(collection(db, "posts"), {
-      //   id: currentUser.uid,
-      //   text: input,
-      //   userImg: currentUser.userImg,
-      //   timestamp: serverTimestamp(),
-      //   name: currentUser.name,
-      //   username: currentUser.username,
-      // });
+      const docRefId = doc(db, "posts", docRef.id);
+      // console.log(docRef.id);
+      await addDoc(collection(docRefId, "likes", currentUser?.uid), {
+        username: currentUser?.firstName,
+      });
 
       const imageRef = ref(storage, `posts/${docRef.id}/image`);
       if (selectedFile) {
@@ -76,7 +83,7 @@ export default function MiddleInput() {
         const fileData = await readerEvent.target.result;
         setSelectedFile(fileData);
       };
-      console.log(selectedFile);
+      // console.log(selectedFile);
     }
     setLoading(false);
   };

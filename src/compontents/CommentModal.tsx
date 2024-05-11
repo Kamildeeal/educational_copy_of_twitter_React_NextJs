@@ -54,7 +54,8 @@ export default function CommentModal() {
   };
   async function sendComment() {
     isSetLoading(true);
-    await addDoc(collection(db, "posts", postId, "comments"), {
+    const postRef = doc(db, "posts", postId);
+    await addDoc(collection(postRef, "comments"), {
       userComment: input,
       userName: currentUser.firstName,
       userEmail: currentUser.email,
