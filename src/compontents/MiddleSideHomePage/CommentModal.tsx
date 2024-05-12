@@ -1,76 +1,38 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import { useRecoilState } from "recoil";
-import { modalState, postIdState } from "../../atoms/modalAtom";
 import Modal from "react-modal";
 import styles from "./CommentModal.module.css";
 import { XMarkIcon } from "@heroicons/react/20/solid";
 import example_avatar from "../../../public/example_avatar.png";
 import Image from "next/image";
 import Moment from "react-moment";
-import { useUserAuth } from "@/context/userAuth";
-import { db } from "@/firebase/config";
-import {
-  addDoc,
-  collection,
-  doc,
-  onSnapshot,
-  serverTimestamp,
-} from "firebase/firestore";
 import { userState } from "../../atoms/userAtom";
 import { useRouter } from "next/navigation";
 import { SyncLoader } from "react-spinners";
+import useCommentModal from "@/hooks/useCommentModal";
 
 export default function CommentModal() {
-  const [open, setOpen] = useRecoilState(modalState);
-  const [postId, setPostId] = useRecoilState(postIdState);
-  const [post, setPost] = useState<any>();
-  const { user, setIsLoggedOut, setUser } = useUserAuth();
   const [currentUser, setCurrentUser] = useRecoilState(userState);
-  const filePickerRef = useRef<any>(null);
-  const [loading, setLoading] = useState(false);
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [input, setInput] = useState("");
   const router = useRouter();
-  const [isLoading, isSetLoading] = useState(false);
 
   Modal.setAppElement("*");
 
-  useEffect(() => {
-    onSnapshot(doc(db, "posts", postId), (snapshot: any) => {
-      setPost(snapshot);
-    });
-  }, [postId, db]);
-
-  const reader = new FileReader();
-  const addImageToPost = (e: any) => {
-    setLoading(true);
-    if (e.target.files[0]) {
-      reader.readAsDataURL(e.target.files[0]);
-      reader.onload = async (readerEvent: any) => {
-        const fileData = await readerEvent.target.result;
-        setSelectedFile(fileData);
-      };
-      console.log(selectedFile);
-    }
-    setLoading(false);
-  };
-  async function sendComment() {
-    isSetLoading(true);
-    const postRef = doc(db, "posts", postId);
-    await addDoc(collection(postRef, "comments"), {
-      userComment: input,
-      userName: currentUser.firstName,
-      userEmail: currentUser.email,
-      timestamp: serverTimestamp(),
-      userId: currentUser.uid,
-    });
-
-    setOpen(false);
-    setInput("");
-    router.push(`/posts/${postId}`);
-    isSetLoading(false);
-  }
+  const {
+    open,
+    setOpen,
+    postId,
+    setPostId,
+    post,
+    filePickerRef,
+    loading,
+    selectedFile,
+    input,
+    setInput,
+    isLoading,
+    addImageToPost,
+    sendComment,
+  } = useCommentModal();
 
   return (
     <div>
