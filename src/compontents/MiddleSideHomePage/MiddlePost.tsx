@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import styles from "./MiddlePost.module.css";
+import styles from "@/MiddlePost.module.css";
 import example_avatar from "../../public/example_avatar.png";
 import { FaRocketchat } from "react-icons/fa6";
 import { FaRegTrashAlt, FaHeart, FaChartBar } from "react-icons/fa";

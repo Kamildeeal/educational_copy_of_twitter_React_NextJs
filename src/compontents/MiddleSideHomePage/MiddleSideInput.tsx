@@ -17,26 +17,15 @@ import { auth } from "@/firebase/config";
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
 import SyncLoader from "react-spinners/SyncLoader";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { userState } from "../../atom_state/userAtom";
+import { userState } from "../../../atom_state/userAtom";
 
 export default function MiddleInput() {
   const [input, setInput] = useState("");
   const filePickerRef = useRef<any>(null);
   const [selectedFile, setSelectedFile] = useState(null);
-  // const { user } = useUserAuth();
-  // const user = auth.currentUser?.providerData[0];
   const [loading, setLoading] = useState(false);
-  // const user = auth.currentUser.providerData[0];
   const currentUser = useRecoilValue(userState);
 
-  // const docRef = await addDoc(collection(db, "posts"), {
-  //   id: currentUser.uid,
-  //   text: input,
-  //   userImg: currentUser.userImg,
-  //   timestamp: serverTimestamp(),
-  //   name: currentUser.name,
-  //   username: currentUser.username,
-  // });
   const sendPost = async () => {
     if (loading) return;
     setLoading(true);

@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import styles from "./MiddleTestInput.module.css";
 import Image from "next/image";
-import example_avatar from "../../public/example_avatar.png";
+import example_avatar from "../../../public/example_avatar.png";
 import {
   addDoc,
   collection,
@@ -16,7 +16,7 @@ import { auth } from "@/firebase/config";
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
 import SyncLoader from "react-spinners/SyncLoader";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { userState } from "../../atom_state/userAtom";
+import { userState } from "../../../atom_state/userAtom";
 
 export default function MiddleTestInput() {
   const [input, setInput] = useState("");

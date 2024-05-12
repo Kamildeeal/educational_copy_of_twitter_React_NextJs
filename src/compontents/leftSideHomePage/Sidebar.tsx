@@ -3,7 +3,7 @@ import React from "react";
 import styles from "./Sidebar.module.css";
 import { useUserAuth } from "@/context/userAuth";
 import { useRecoilState } from "recoil";
-import { userState } from "../../atom_state/userAtom";
+import { userState } from "../../../atom_state/userAtom";
 import { auth } from "@/firebase/config";
 import { useRouter } from "next/navigation";
 import { DiVim } from "react-icons/di";

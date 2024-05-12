@@ -1,11 +1,11 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import { useRecoilState } from "recoil";
-import { modalState, postIdState } from "../../atom_state/modalAtom";
+import { modalState, postIdState } from "../../../atom_state/modalAtom";
 import Modal from "react-modal";
-import styles from "../compontents/CommentModal.module.css";
+import styles from "./CommentModal.module.css";
 import { XMarkIcon } from "@heroicons/react/20/solid";
-import example_avatar from "../../public/example_avatar.png";
+import example_avatar from "../../../public/example_avatar.png";
 import Image from "next/image";
 import Moment from "react-moment";
 import { useUserAuth } from "@/context/userAuth";
@@ -17,7 +17,7 @@ import {
   onSnapshot,
   serverTimestamp,
 } from "firebase/firestore";
-import { userState } from "../../atom_state/userAtom";
+import { userState } from "../../../atom_state/userAtom";
 import { useRouter } from "next/navigation";
 import { SyncLoader } from "react-spinners";
 

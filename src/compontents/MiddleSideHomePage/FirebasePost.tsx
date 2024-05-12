@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "./FirebasePost.module.css";
-import example_avatar from "../../public/example_avatar.png";
+import example_avatar from "../../../public/example_avatar.png";
 import { FaRocketchat } from "react-icons/fa6";
 import { FaRegTrashAlt, FaHeart, FaChartBar } from "react-icons/fa";
 import { BiRepost } from "react-icons/bi";
@@ -10,7 +10,7 @@ import Moment from "react-moment";
 import { db, storage } from "@/firebase/config";
 import { deleteObject, ref } from "firebase/storage";
 import { useRecoilState } from "recoil";
-import { modalState, postIdState } from "../../atom_state/modalAtom";
+import { modalState, postIdState } from "../../../atom_state/modalAtom";
 import {
   collection,
   deleteDoc,
@@ -18,7 +18,7 @@ import {
   onSnapshot,
   setDoc,
 } from "firebase/firestore";
-import { userState } from "../../atom_state/userAtom";
+import { userState } from "../../../atom_state/userAtom";
 import { useRouter } from "next/navigation";
 import { SyncLoader } from "react-spinners";
 

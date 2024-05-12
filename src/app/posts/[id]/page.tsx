@@ -16,16 +16,16 @@ import {
   orderBy,
   query,
 } from "firebase/firestore";
-import Sidebar from "@/compontents/Sidebar";
-import MiddleInput from "@/compontents/MiddleInput";
-import MiddlePost from "@/compontents/MiddlePost";
-import RightSideBar from "@/compontents/RightSideBar";
-import CommentModal from "@/compontents/CommentModal";
+import Sidebar from "@/compontents/leftSideHomePage/Sidebar";
+import MiddleInput from "@/compontents/MiddleSideHomePage/MiddleSideInput";
+import MiddlePost from "@/compontents/MiddleSideHomePage/MiddlePost";
+import RightSideBar from "@/compontents/rightSideHomePage/RightSideBar";
+import CommentModal from "@/compontents/MiddleSideHomePage/CommentModal";
 import { RecoilRoot, useRecoilState } from "recoil";
 import { userState } from "@/../atom_state/userAtom";
 import Head from "next/head";
 import { FaArrowLeft } from "react-icons/fa6";
-import FirebasePost from "@/compontents/FirebasePost";
+import FirebasePost from "@/compontents/MiddleSideHomePage/FirebasePost";
 import PostCompontent from "@/compontents/postPageCompontents/PostComponent";
 import UserComment from "@/compontents/postPageCompontents/UserComment";
 

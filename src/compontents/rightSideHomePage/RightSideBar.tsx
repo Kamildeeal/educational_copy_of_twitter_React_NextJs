@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { IoSearch } from "react-icons/io5";
 import styles from "./RightSideBar.module.css";
-import News from "./News";
+import News from "../leftSideHomePage/News";
 
 type NewsResult = {
   title: string;
