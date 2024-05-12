@@ -10,7 +10,7 @@ import Moment from "react-moment";
 import { db, storage } from "@/firebase/config";
 import { deleteObject, ref } from "firebase/storage";
 import { useRecoilState } from "recoil";
-import { modalState, postIdState } from "@/../../atom_state/modalAtom";
+import { modalState, postIdState } from "@/atoms/modalAtom";
 import {
   collection,
   deleteDoc,
@@ -18,7 +18,7 @@ import {
   onSnapshot,
   setDoc,
 } from "firebase/firestore";
-import { userState } from "@/../../atom_state/userAtom";
+import { userState } from "../../atoms/userAtom";
 import { useRouter } from "next/navigation";
 
 const FirebasePost = ({ post, id }: any) => {

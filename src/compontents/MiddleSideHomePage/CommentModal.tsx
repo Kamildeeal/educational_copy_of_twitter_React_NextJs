@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import { useRecoilState } from "recoil";
-import { modalState, postIdState } from "../../../atom_state/modalAtom";
+import { modalState, postIdState } from "../../atoms/modalAtom";
 import Modal from "react-modal";
 import styles from "./CommentModal.module.css";
 import { XMarkIcon } from "@heroicons/react/20/solid";
@@ -17,7 +17,7 @@ import {
   onSnapshot,
   serverTimestamp,
 } from "firebase/firestore";
-import { userState } from "../../../atom_state/userAtom";
+import { userState } from "../../atoms/userAtom";
 import { useRouter } from "next/navigation";
 import { SyncLoader } from "react-spinners";
 

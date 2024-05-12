@@ -12,7 +12,7 @@ import React, { useEffect, useState } from "react";
 import { FaRegTrashAlt, FaHeart, FaChartBar } from "react-icons/fa";
 import { BiRepost } from "react-icons/bi";
 import { useRecoilState } from "recoil";
-import { userState } from "../../../atom_state/userAtom";
+import { userState } from "../../atoms/userAtom";
 import Image from "next/image";
 import styles from "./UserComment.module.css";
 import example_avatar from "@/../../public/example_avatar.png";
@@ -20,7 +20,7 @@ import Moment from "react-moment";
 import { FaRocketchat } from "react-icons/fa6";
 import { deleteObject, ref } from "firebase/storage";
 import { storage } from "firebase-admin";
-import { modalState, postIdState } from "../../../atom_state/modalAtom";
+import { modalState, postIdState } from "../../atoms/modalAtom";
 
 export default function UserComment({
   comment,

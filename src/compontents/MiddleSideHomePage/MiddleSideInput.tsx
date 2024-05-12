@@ -17,7 +17,7 @@ import { auth } from "@/firebase/config";
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
 import SyncLoader from "react-spinners/SyncLoader";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { userState } from "../../../atom_state/userAtom";
+import { userState } from "../../atoms/userAtom";
 
 export default function MiddleInput() {
   const [input, setInput] = useState("");

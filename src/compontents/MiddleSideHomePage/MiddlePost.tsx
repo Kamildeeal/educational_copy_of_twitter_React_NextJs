@@ -19,8 +19,8 @@ import FirebasePost from "./FirebasePost";
 import { AnimatePresence, motion, px } from "framer-motion";
 
 interface FirebasePostProps {
-  id: number; // Assuming id is of type string
-  post: any; // Adjust this type according to your post data structure
+  id: number;
+  post: any;
 }
 
 const MiddlePost = () => {

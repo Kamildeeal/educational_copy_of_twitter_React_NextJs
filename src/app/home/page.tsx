@@ -13,7 +13,7 @@ import MiddlePost from "@/compontents/MiddleSideHomePage/MiddlePost";
 import RightSideBar from "@/compontents/rightSideHomePage/RightSideBar";
 import CommentModal from "@/compontents/MiddleSideHomePage/CommentModal";
 import { RecoilRoot, useRecoilState } from "recoil";
-import { userState } from "../../../atom_state/userAtom";
+import { userState } from "../../atoms/userAtom";
 import MiddleTestInput from "@/compontents/MiddleSideHomePage/MiddleTestInput";
 import { SyncLoader } from "react-spinners";
 
