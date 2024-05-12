@@ -4,8 +4,6 @@ import {
   deleteDoc,
   doc,
   onSnapshot,
-  orderBy,
-  query,
   setDoc,
 } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
@@ -17,10 +15,6 @@ import Image from "next/image";
 import styles from "./UserComment.module.css";
 import example_avatar from "@/../../public/example_avatar.png";
 import Moment from "react-moment";
-import { FaRocketchat } from "react-icons/fa6";
-import { deleteObject, ref } from "firebase/storage";
-import { storage } from "firebase-admin";
-import { modalState, postIdState } from "../../atoms/modalAtom";
 
 export default function UserComment({
   comment,
@@ -30,8 +24,6 @@ export default function UserComment({
   const [currentUser, setCurrentUser] = useRecoilState(userState);
   const [hasLiked, setHasLiked] = useState(false);
   const [likes, setLikes] = useState([]);
-  const [open, setOpen] = useRecoilState(modalState);
-  const [postId, setPostId] = useRecoilState(postIdState);
 
   useEffect(() => {
     const unsubscribe = onSnapshot(
@@ -41,8 +33,8 @@ export default function UserComment({
   }, [db, commentId, currentPostId]);
 
   useEffect(() => {
-    console.log(currentPostId);
-    console.log(commentId);
+    // console.log(currentPostId);
+    // console.log(commentId);
     setHasLiked(
       likes.findIndex((like: any) => like.id === currentUser?.uid) !== -1
     );

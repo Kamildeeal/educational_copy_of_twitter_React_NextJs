@@ -18,64 +18,21 @@ import { getDownloadURL, ref, uploadString } from "firebase/storage";
 import SyncLoader from "react-spinners/SyncLoader";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { userState } from "../../atoms/userAtom";
+import useMiddleInput from "@/hooks/useMiddleSideInput";
 
-export default function MiddleInput() {
-  const [input, setInput] = useState("");
-  const filePickerRef = useRef<any>(null);
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [loading, setLoading] = useState(false);
+export default function MiddleSideInput() {
   const currentUser = useRecoilValue(userState);
 
-  const sendPost = async () => {
-    if (loading) return;
-    setLoading(true);
-    if (auth.currentUser) {
-      const docRef = await addDoc(collection(db, "posts"), {
-        uid: auth.currentUser.uid,
-        email: auth.currentUser.email,
-        text: input,
-        timestamp: serverTimestamp(),
-        firstName: currentUser.firstName,
-      });
-
-      const docRefId = doc(db, "posts", docRef.id);
-      // console.log(docRef.id);
-      await addDoc(collection(docRefId, "likes", currentUser?.uid), {
-        username: currentUser?.firstName,
-      });
-
-      const imageRef = ref(storage, `posts/${docRef.id}/image`);
-      if (selectedFile) {
-        await uploadString(imageRef, selectedFile, "data_url").then(
-          async () => {
-            const downloadURL = await getDownloadURL(imageRef);
-            await updateDoc(doc(db, "posts", docRef.id), {
-              image: downloadURL,
-            });
-          }
-        );
-      }
-      setLoading(false);
-      setInput("");
-      setSelectedFile(null);
-    } else {
-      console.log("Something is wrong with user auth");
-    }
-  };
-
-  const reader = new FileReader();
-  const addImageToPost = (e: any) => {
-    setLoading(true);
-    if (e.target.files[0]) {
-      reader.readAsDataURL(e.target.files[0]);
-      reader.onload = async (readerEvent: any) => {
-        const fileData = await readerEvent.target.result;
-        setSelectedFile(fileData);
-      };
-      // console.log(selectedFile);
-    }
-    setLoading(false);
-  };
+  const {
+    input,
+    setInput,
+    selectedFile,
+    setSelectedFile,
+    loading,
+    filePickerRef,
+    sendPost,
+    addImageToPost,
+  } = useMiddleInput();
 
   return (
     <div className={styles.wrapper}>

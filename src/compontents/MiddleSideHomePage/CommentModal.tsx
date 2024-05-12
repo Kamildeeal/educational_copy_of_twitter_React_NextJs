@@ -8,31 +8,16 @@ import example_avatar from "../../../public/example_avatar.png";
 import Image from "next/image";
 import Moment from "react-moment";
 import { userState } from "../../atoms/userAtom";
-import { useRouter } from "next/navigation";
 import { SyncLoader } from "react-spinners";
 import useCommentModal from "@/hooks/useCommentModal";
 
 export default function CommentModal() {
   const [currentUser, setCurrentUser] = useRecoilState(userState);
-  const router = useRouter();
 
   Modal.setAppElement("*");
 
-  const {
-    open,
-    setOpen,
-    postId,
-    setPostId,
-    post,
-    filePickerRef,
-    loading,
-    selectedFile,
-    input,
-    setInput,
-    isLoading,
-    addImageToPost,
-    sendComment,
-  } = useCommentModal();
+  const { open, setOpen, post, input, setInput, isLoading, sendComment } =
+    useCommentModal();
 
   return (
     <div>

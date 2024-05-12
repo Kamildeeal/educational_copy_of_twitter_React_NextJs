@@ -7,15 +7,13 @@ import {
   collection,
   doc,
   serverTimestamp,
-  setDoc,
   updateDoc,
 } from "firebase/firestore";
 import { db, storage } from "@/firebase/config";
-import { useUserAuth } from "@/context/userAuth";
 import { auth } from "@/firebase/config";
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
 import SyncLoader from "react-spinners/SyncLoader";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilValue } from "recoil";
 import { userState } from "@/atoms/userAtom";
 
 export default function MiddleTestInput() {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Image from "next/image";
 import styles from "./ExamplePost.module.css";
 import example_avatar from "../../../public/example_avatar.png";

@@ -1,80 +1,35 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import styles from "./FirebasePost.module.css";
 import example_avatar from "../../../public/example_avatar.png";
 import { FaRocketchat } from "react-icons/fa6";
 import { FaRegTrashAlt, FaHeart, FaChartBar } from "react-icons/fa";
 import { BiRepost } from "react-icons/bi";
-import { useUserAuth } from "@/context/userAuth";
 import Moment from "react-moment";
-import { db, storage } from "@/firebase/config";
-import { deleteObject, ref } from "firebase/storage";
 import { useRecoilState } from "recoil";
 import { modalState, postIdState } from "../../atoms/modalAtom";
-import {
-  collection,
-  deleteDoc,
-  doc,
-  onSnapshot,
-  setDoc,
-} from "firebase/firestore";
 import { userState } from "../../atoms/userAtom";
 import { useRouter } from "next/navigation";
 import { SyncLoader } from "react-spinners";
+import useFirebasePost from "@/hooks/useFirebasePost";
+import { Post } from "@/types/types";
 
-const FirebasePost = ({ post, id }: any) => {
-  const { user, setIsLoggedOut, setUser } = useUserAuth();
-  const [likes, setLikes] = useState([]);
-  const [hasLiked, setHasLiked] = useState(false);
+interface FirebasePost {
+  post: Post;
+  id: string;
+}
+
+const FirebasePost = ({ post, id }: FirebasePost) => {
   const [open, setOpen] = useRecoilState(modalState);
   const [postId, setPostId] = useRecoilState(postIdState);
   const [currentUser, setCurrentUser] = useRecoilState(userState);
-  const [comments, setComments] = useState([]);
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    const unsubscribe = onSnapshot(
-      collection(db, "posts", id, "likes"),
-      (snapshot: any) => setLikes(snapshot.docs)
-    );
-  }, [db]);
-
-  useEffect(() => {
-    const unsubscribe = onSnapshot(
-      collection(db, "posts", id, "comments"),
-      (snapshot: any) => setComments(snapshot.docs)
-    );
-  }, [db]);
-
-  useEffect(() => {
-    setHasLiked(
-      likes.findIndex((like: any) => like.id === currentUser?.uid) !== -1
-    );
-  }, [likes, currentUser]);
-
-  async function likePost() {
-    if (currentUser.uid) {
-      if (hasLiked) {
-        await deleteDoc(doc(db, "posts", post.id, "likes", currentUser?.uid));
-      } else {
-        await setDoc(doc(db, "posts", post.id, "likes", currentUser?.uid), {
-          username: currentUser?.firstName,
-        });
-        // console.log(currentUser?.uid);
-      }
-    }
-  }
-
-  async function deletePost() {
-    if (window.confirm("Are you sure you want to delete this post?")) {
-      deleteDoc(doc(db, "posts", id));
-      if (post.data().image) {
-        deleteObject(ref(storage, `posts/${id}/image`));
-      }
-    }
-  }
-
+  const { likes, hasLiked, comments, likePost, deletePost } = useFirebasePost(
+    post,
+    id
+  );
   return (
     <div>
       {loading && (
