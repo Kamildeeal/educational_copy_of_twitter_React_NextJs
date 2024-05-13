@@ -20,15 +20,13 @@ export default function MiddleTestInput() {
   const [input, setInput] = useState("");
   const filePickerRef = useRef<any>(null);
   const [selectedFile, setSelectedFile] = useState(null);
-  // const { user } = useUserAuth();
-  // const user = auth.currentUser?.providerData[0];
   const [loading, setLoading] = useState(false);
-  // const user = auth.currentUser.providerData[0];
   const currentUser = useRecoilValue(userState);
 
   const sendPost = async () => {
     if (loading) return;
     setLoading(true);
+    console.log("loading post");
     if (auth.currentUser) {
       const docRef = await addDoc(collection(db, "posts"), {
         uid: auth.currentUser.uid,

@@ -73,10 +73,6 @@ const FirebasePost = ({ post, id }: any) => {
     }
   }
 
-  // useEffect(() => {
-  //   setHasLiked(likes.findIndex((like: any) => like.id === user.uid) !== -1);
-  // }, [likes]);
-
   return (
     <div>
       <div className={styles.post_box}>

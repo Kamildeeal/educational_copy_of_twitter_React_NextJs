@@ -33,8 +33,6 @@ export default function UserComment({
   }, [db, commentId, currentPostId]);
 
   useEffect(() => {
-    // console.log(currentPostId);
-    // console.log(commentId);
     setHasLiked(
       likes.findIndex((like: any) => like.id === currentUser?.uid) !== -1
     );

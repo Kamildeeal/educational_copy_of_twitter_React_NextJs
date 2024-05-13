@@ -48,6 +48,7 @@ const useCommentModal = () => {
   };
   async function sendComment() {
     isSetLoading(true);
+    setLoading(true);
     const postRef = doc(db, "posts", postId);
     await addDoc(collection(postRef, "comments"), {
       userComment: input,
@@ -60,7 +61,6 @@ const useCommentModal = () => {
     setOpen(false);
     setInput("");
     router.push(`/posts/${postId}`);
-    isSetLoading(false);
   }
 
   return {

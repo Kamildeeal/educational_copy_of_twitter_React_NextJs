@@ -50,8 +50,9 @@ const MiddlePost = () => {
     const scrollY = window.scrollY;
     const windowHeight = window.innerHeight;
     const documentHeight = document.documentElement.scrollHeight;
-    if (scrollY + windowHeight >= documentHeight - 100) {
-      console.log("ding dong");
+    const isScrollingToBottom = scrollY + windowHeight >= documentHeight - 100;
+    if (isScrollingToBottom && posts.length !== pageNumber * postsPerPage) {
+      // console.log("ding dong");
       setPageNumber((prevPageNumber) => prevPageNumber + 1);
     }
   };
