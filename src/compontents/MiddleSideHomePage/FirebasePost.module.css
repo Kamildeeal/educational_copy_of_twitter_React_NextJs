@@ -1,0 +1,139 @@
+.post_box {
+  border: 1px solid #e5e5e5;
+}
+
+.post_box:hover {
+  background-color: rgba(0, 0, 0, 0.075);
+}
+.image_user_container {
+  display: flex;
+  flex-direction: row;
+  padding: 0.75rem;
+  cursor: pointer;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.image_user {
+  border-radius: 50%;
+  resize: none;
+}
+
+.post_content {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.post_header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.post_info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.userNick,
+.timestamp {
+  font-size: 1rem;
+}
+
+.post_user_container {
+  display: flex;
+  align-items: center;
+  max-width: 470px;
+  width: 100%;
+  word-wrap: break-word;
+}
+.text {
+  word-wrap: break-word;
+}
+
+.user_styles,
+.dots {
+  font-weight: bold;
+  margin-right: 10px;
+  font-size: 1.1rem;
+  margin-left: 10px;
+}
+
+.uploadedImage {
+  max-width: 516px;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+.icons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 14px;
+  margin-right: 20px;
+  font-size: 1.3rem;
+  color: rgb(87, 86, 86);
+  padding: 4px;
+}
+
+.container_icon_heart,
+.container_icon_chat {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 48px;
+  height: 20px;
+  font-size: 1.22rem;
+  transition: 0.2s ease-in-out;
+}
+.like_counter {
+  font-size: 1.1rem;
+}
+
+.styles.heart {
+  padding: 4px;
+  font-size: 1.22rem;
+}
+
+.container_icon_chat:hover,
+.container_icon_trashcan:hover {
+  color: black;
+}
+.container_icon_repost {
+  font-size: 1.5rem;
+}
+.container_icon_repost:hover {
+  color: rgba(38, 151, 226, 0.863);
+}
+.container_icon_heart:hover {
+  color: red;
+}
+.container_icon_chart:hover {
+  color: green;
+}
+
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 10000px;
+  background-color: rgba(8, 8, 8, 0.5);
+  z-index: 1000;
+}
+
+@media screen and (max-width: 700px) {
+  .uploadedImage {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+}

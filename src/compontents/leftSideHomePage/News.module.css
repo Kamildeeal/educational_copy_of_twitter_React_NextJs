@@ -1,0 +1,37 @@
+.container {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
+  border-radius: 5px;
+}
+.source {
+  color: black;
+  font-size: 12px;
+}
+.title {
+  color: black;
+}
+.title:hover {
+  color: rgb(79, 79, 172);
+}
+
+.a {
+  text-decoration: none;
+}
+
+.container:hover {
+  background-color: rgba(128, 128, 128, 0.226);
+}
+
+@media screen and (max-width: 1160px) {
+  .container img {
+    width: 100px;
+    height: 100px;
+  }
+  .container div h5,
+  .container div h4 {
+    font-size: 0.7rem;
+  }
+}

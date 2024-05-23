@@ -1,0 +1,203 @@
+.positionOfSidebar {
+  height: 100vh;
+}
+
+.left_wing {
+  position: sticky;
+  top: 10px;
+  display: flex;
+  flex: 3;
+  flex-direction: column;
+  text-align: right;
+  align-items: flex-end;
+  height: 100vh;
+  margin-top: 5px;
+}
+
+.image_container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: auto;
+  width: 225px;
+}
+.icons_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  width: 210px;
+  margin: 15px;
+  transition: 1s ease-in-out;
+}
+.icons_container span {
+  display: flex;
+  margin-top: 20px;
+  cursor: pointer;
+  width: 210px;
+  text-align: right;
+  font-size: 23px;
+}
+.icons_container span p {
+  margin: 0;
+}
+
+.icons_container span:hover {
+  background: rgba(0, 0, 0, 0.089);
+  border-radius: 6px;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.205);
+}
+
+.icons_container b {
+  display: flex;
+  align-items: center;
+  width: 60px;
+}
+.icons_container button {
+  border-color: rgb(24, 129, 233);
+  background-color: rgb(26, 132, 219);
+  max-width: 380px;
+  transition-duration: 0.2s;
+  user-select: none;
+  height: 60px;
+  min-height: 36px;
+  outline-style: none;
+  margin-top: 50px;
+  cursor: pointer;
+  max-width: 310px;
+  min-width: 210px;
+  flex: 0 0 auto;
+  border-radius: 9999px;
+  border-width: 1px;
+  border-style: solid;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  display: flex;
+  pointer-events: auto;
+  font-size: 18px;
+  color: white;
+  direction: ltr;
+  font-family: "Roboto-Regular", arial, sans-serif;
+  font-weight: 600;
+  transition: 1s ease-in-out;
+}
+
+.icon_twitter {
+  padding-left: 7px;
+}
+
+.user_info {
+  font-size: 20px;
+  /* position: fixed; */
+  margin-top: 80px;
+  padding-left: 15px;
+  bottom: 20px;
+  height: 120px;
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  justify-items: flex-end;
+  align-items: center;
+  align-self: flex-end;
+}
+
+.button_logout {
+  background-color: rgb(19, 20, 20);
+  border: none;
+  height: 42px;
+  width: 94px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 15px;
+  margin-top: 10px;
+  transition: 0.3s ease-in-out;
+}
+.button_logout:hover {
+  background-color: rgba(19, 20, 20, 0.452);
+}
+
+.user_info p {
+  font-weight: bold;
+  margin: 0px;
+  margin-right: 10px;
+}
+
+.user_info div {
+  display: flex;
+  align-items: center;
+}
+
+.user_info div span {
+  font-size: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media screen and (max-width: 1360px) {
+  .user_info div {
+    display: inline;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .icons_container span p {
+    display: none;
+  }
+  .icons_container span {
+    width: 30px;
+    margin-right: 46px;
+    padding-left: 30px;
+    position: relative;
+  }
+
+  .icons_container span:hover {
+    background: none;
+    border-radius: 6px;
+    box-shadow: none;
+    left: 10px;
+  }
+  .icons_container {
+    justify-content: center;
+    width: 30px;
+  }
+  .icons_container button {
+    display: none;
+  }
+  .image_container {
+    width: 30px;
+    margin-right: 60px;
+    padding-left: 35px;
+  }
+  .user_info {
+    left: 20px;
+  }
+}
+
+@media screen and (max-width: 1160px) {
+  .user_info div {
+    display: none;
+    left: 0px;
+  }
+  .icons_container span {
+    width: 30px;
+    margin-right: 4px;
+  }
+  .image_container {
+    width: 30px;
+    margin-right: 24px;
+  }
+  .button_logout {
+    position: relative;
+    left: 30px;
+    height: 40px;
+    width: 74px;
+    font-size: 0.8rem;
+    margin-left: 0px;
+  }
+}

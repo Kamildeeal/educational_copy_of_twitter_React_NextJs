@@ -1,0 +1,18 @@
+html,
+body {
+  font-size: 100%;
+  font-family: "Public Sans", sans-serif;
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  height: 100%;
+  margin: 0 auto;
+  /* display: flex; */
+  justify-content: center;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
