@@ -7,14 +7,14 @@ import styles from "./page.module.css";
 
 import { useUserAuth } from "@/context/userAuth";
 import { doc, getDoc, onSnapshot } from "firebase/firestore";
-import Sidebar from "@/compontents/leftSideHomePage/Sidebar";
-import MiddleInput from "@/compontents/middleSideHomePage/MiddleSideInput";
-import MiddlePost from "@/compontents/middleSideHomePage/MiddlePost";
-import RightSideBar from "@/compontents/rightSideHomePage/RightSideBar";
-import CommentModal from "@/compontents/middleSideHomePage/CommentModal";
+import Sidebar from "@/components/leftSideHomePage/Sidebar";
+import MiddleInput from "@/components/middleSideHomePage/MiddleSideInput";
+import MiddlePost from "@/components/middleSideHomePage/MiddlePost";
+import RightSideBar from "@/components/rightSideHomePage/RightSideBar";
+import CommentModal from "@/components/middleSideHomePage/CommentModal";
 import { RecoilRoot, useRecoilState } from "recoil";
 import { userState } from "../../atoms/userAtom";
-import MiddleTestInput from "@/compontents/middleSideHomePage/MiddleTestInput";
+import MiddleTestInput from "@/components/middleSideHomePage/MiddleTestInput";
 import { SyncLoader } from "react-spinners";
 
 type NewsData = {

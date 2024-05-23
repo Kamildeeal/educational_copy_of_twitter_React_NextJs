@@ -1,12 +1,12 @@
 "use client";
 import React from "react";
 import styles from "./page.module.css";
-import Sidebar from "@/compontents/leftSideHomePage/Sidebar";
-import RightSideBar from "@/compontents/rightSideHomePage/RightSideBar";
+import Sidebar from "@/components/leftSideHomePage/Sidebar";
+import RightSideBar from "@/components/rightSideHomePage/RightSideBar";
 import { FaArrowLeft } from "react-icons/fa6";
-import PostCompontent from "@/compontents/postPageCompontents/PostComponent";
-import UserComment from "@/compontents/postPageCompontents/UserComment";
-import CommentModal from "@/compontents/middleSideHomePage/CommentModal";
+import PostCompontent from "@/components/postPageCompontents/PostComponent";
+import UserComment from "@/components/postPageCompontents/UserComment";
+import CommentModal from "@/components/middleSideHomePage/CommentModal";
 import Head from "next/head";
 import usePostPageLogic from "@/hooks/usePostPageLogic";
 import { useRouter } from "next/navigation";
