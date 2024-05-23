@@ -1,13 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
-import styles from "@/MiddlePost.module.css";
-import example_avatar from "../../public/example_avatar.png";
-import { FaRocketchat } from "react-icons/fa6";
-import { FaRegTrashAlt, FaHeart, FaChartBar } from "react-icons/fa";
-import { BiRepost } from "react-icons/bi";
 import {
   collection,
-  getDocs,
   limit,
   onSnapshot,
   orderBy,
@@ -16,7 +9,7 @@ import {
 import { db } from "@/firebase/config";
 import ExamplePost from "./ExamplePost";
 import FirebasePost from "./FirebasePost";
-import { AnimatePresence, motion, px } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 interface FirebasePostProps {
   id: number;

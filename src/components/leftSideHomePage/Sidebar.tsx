@@ -1,15 +1,12 @@
 import Image from "next/image";
 import React from "react";
 import styles from "./Sidebar.module.css";
-import { useUserAuth } from "@/context/userAuth";
 import { useRecoilState } from "recoil";
 import { userState } from "../../atoms/userAtom";
 import { auth } from "@/firebase/config";
 import { useRouter } from "next/navigation";
-import { DiVim } from "react-icons/di";
 
 export default function Sidebar() {
-  const { user, setIsLoggedOut, setUser } = useUserAuth();
   const [currentUser, setCurrentUser] = useRecoilState(userState);
   const router = useRouter();
   return (

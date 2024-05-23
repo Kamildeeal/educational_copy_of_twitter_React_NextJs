@@ -15,8 +15,8 @@ import useFirebasePost from "@/hooks/useFirebasePost";
 import { Post } from "@/types/types";
 
 interface FirebasePost {
-  post: Post;
-  id: string;
+  post: Post | any;
+  id: string | number | any;
 }
 
 const FirebasePost = ({ post, id }: FirebasePost) => {

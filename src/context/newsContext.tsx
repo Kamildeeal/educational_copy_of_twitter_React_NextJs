@@ -6,9 +6,7 @@ import {
   PropsWithChildren,
 } from "react";
 
-type NewsData = {
-  // określ strukturę danych, jeśli znasz ją z góry
-};
+type NewsData = {};
 
 const initialData: NewsData[] = [];
 

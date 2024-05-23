@@ -1,22 +1,9 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import styles from "./MiddleInput.module.css";
 import Image from "next/image";
 import example_avatar from "../../public/example_avatar.png";
-import {
-  addDoc,
-  collection,
-  doc,
-  getDocs,
-  serverTimestamp,
-  setDoc,
-  updateDoc,
-} from "firebase/firestore";
-import { db, storage } from "@/firebase/config";
-import { useUserAuth } from "@/context/userAuth";
-import { auth } from "@/firebase/config";
-import { getDownloadURL, ref, uploadString } from "firebase/storage";
 import SyncLoader from "react-spinners/SyncLoader";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilValue } from "recoil";
 import { userState } from "../../atoms/userAtom";
 import useMiddleInput from "@/hooks/useMiddleSideInput";
 

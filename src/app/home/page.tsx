@@ -2,17 +2,16 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { auth, db } from "@/firebase/config";
-import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 import styles from "./page.module.css";
 
 import { useUserAuth } from "@/context/userAuth";
 import { doc, getDoc, onSnapshot } from "firebase/firestore";
 import Sidebar from "@/components/leftSideHomePage/Sidebar";
-import MiddleInput from "@/components/middleSideHomePage/MiddleSideInput";
 import MiddlePost from "@/components/middleSideHomePage/MiddlePost";
 import RightSideBar from "@/components/rightSideHomePage/RightSideBar";
 import CommentModal from "@/components/middleSideHomePage/CommentModal";
-import { RecoilRoot, useRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { userState } from "../../atoms/userAtom";
 import MiddleTestInput from "@/components/middleSideHomePage/MiddleTestInput";
 import { SyncLoader } from "react-spinners";
