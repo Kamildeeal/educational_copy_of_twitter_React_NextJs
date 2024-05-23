@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styles from "./page.module.css";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -8,18 +8,8 @@ import { RecoilRoot } from "recoil";
 import { SyncLoader } from "react-spinners";
 
 const EntryScreen = () => {
-  const { isLoggedOut } = useUserAuth();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-
-  // HELPER FOR ROUTING LOGGED USERS
-  // useEffect(() => {
-  //   if (isLoggedOut) {
-  //     router.push("/");
-  //   } else {
-  //     router.push("/home");
-  //   }
-  // }, [isLoggedOut]);
 
   const handleSignupClick = () => {
     setLoading(true);

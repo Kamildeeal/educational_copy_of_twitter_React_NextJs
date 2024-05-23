@@ -6,11 +6,12 @@
   flex-direction: column;
   background: black;
   margin: 0;
-  padding: 0;
+  padding: 10px;
   box-sizing: border-box;
   min-height: 100vh;
   min-width: 300px;
   width: 100%;
+  float: left;
 }
 
 .container {
@@ -320,5 +321,20 @@
   }
   .desc {
     max-height: 40px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .h1container > h1 {
+    font-size: 3rem;
+  }
+
+  .buttonCreateAccount,
+  .buttonLoginWith,
+  .buttonLogin,
+  .orContainer,
+  .desc {
+    max-width: 260px;
+    width: 100%;
   }
 }

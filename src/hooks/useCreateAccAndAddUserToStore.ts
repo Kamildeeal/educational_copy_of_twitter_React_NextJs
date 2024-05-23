@@ -80,7 +80,7 @@ export default function useCreateAccAndAddUserToStore() {
       Swal.fire({
         icon: "error",
         title: "Error!",
-        text: `Email addres ${email} is already used`,
+        text: `Email addres "${email}" isn't correct`,
         showConfirmButton: false,
         timer: 1500,
       });
