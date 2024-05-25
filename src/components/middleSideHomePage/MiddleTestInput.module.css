@@ -1,18 +1,24 @@
 .wrapper {
   max-width: 592px;
   width: 100%;
+  min-width: 290px;
 }
 .input_box {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr auto; /* Na początek ustalamy 150px wysokości */
+  grid-template-rows: 1fr auto;
   width: 100%;
+  max-width: 592px;
+  min-width: 290px;
 }
 
 .cointainer {
   display: flex;
   justify-content: space-between;
   border: 1px solid rgba(128, 128, 128, 0.158);
+  max-width: 592px;
+  width: 100%;
+  min-width: 290px;
 }
 
 .set_btn,
@@ -21,7 +27,7 @@
   color: rgb(126, 117, 117);
   font-size: 1.15rem;
   height: 50px;
-  flex: 5;
+  flex: 4;
   border: 0px;
 }
 
@@ -46,13 +52,13 @@
 .container_text {
   display: flex;
   flex-direction: column;
-  width: 100%;
 }
 
 .container_text > textarea {
   padding-top: 10px;
   flex-grow: 1;
-  width: 90%;
+  min-width: 90%;
+  width: 100%;
   border: none;
   resize: none;
   font-size: 18px;
@@ -84,7 +90,8 @@
 }
 
 .post_btn {
-  margin-right: 80px;
+  margin-right: auto;
+  margin-left: auto;
   background-color: rgb(26, 132, 219);
   border: none;
   height: 35px;
@@ -187,5 +194,12 @@
   .input_box {
     grid-template-rows: auto;
     column-width: auto;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .set_btn,
+  .gear_btn {
+    font-size: 1rem;
   }
 }

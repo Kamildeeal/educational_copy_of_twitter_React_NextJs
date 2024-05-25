@@ -56,7 +56,7 @@ const HomePage = ({ newsResults }: any) => {
       setLoading(false);
     });
     return () => unsubscribe();
-  }, [auth, loading]);
+  }, [loading, setCurrentUser]);
   // question
   // should I add cleanup function after this compontent "unmounts"(render another compontent)??
   // like: return () => unsubscribe(); // Cleanup function
@@ -107,7 +107,6 @@ const HomePage = ({ newsResults }: any) => {
               </button>
             </div>
             <MiddleTestInput />
-            {/* <MiddleInput /> */}
             <MiddlePost />
           </div>
           <div className={styles.right_wing}>

@@ -63,14 +63,17 @@ const FirebasePost = ({ post, id }: FirebasePost) => {
                 <h4 className={styles.user_styles}>
                   {post?.data()?.firstName}{" "}
                 </h4>
-                <span className={styles.userNick}>
-                  {" "}
-                  {`@`}
-                  {post?.data()?.email}
-                </span>
-                <span className={styles.timestamp}>
-                  ・<Moment fromNow>{post?.data()?.timestamp?.toDate()}</Moment>
-                </span>
+                <div className={styles.user_info_container}>
+                  <span className={styles.userNick}>
+                    {" "}
+                    {`@`}
+                    {post?.data()?.email}
+                  </span>
+                  <span className={styles.timestamp}>
+                    ・
+                    <Moment fromNow>{post?.data()?.timestamp?.toDate()}</Moment>
+                  </span>
+                </div>
               </div>
               {/* dot icon */}
               <p className={styles.dots}>⋯</p>
@@ -87,18 +90,30 @@ const FirebasePost = ({ post, id }: FirebasePost) => {
                 {post?.data()?.text}
               </p>
             </div>
-            <img
+            {/* <img
               onClick={() => {
                 setLoading(true);
                 router.push(`/posts/${id}`);
               }}
               src={post?.data()?.image}
               className={styles.uploadedImage}
+            /> */}
+            <Image
+              className={styles.uploadedImage}
+              src={post?.data()?.image}
+              alt="user-img"
+              onClick={() => {
+                setLoading(true);
+                router.push(`/posts/${id}`);
+              }}
+              width={400}
+              height={400}
             />
             {/* {icons} */}
             <div className={styles.icons}>
               <div className={styles.container_icon_chat}>
                 <FaRocketchat
+                  className={styles.icon_chat}
                   onClick={() => {
                     setOpen(!open);
                     setPostId(post.id);
@@ -109,30 +124,17 @@ const FirebasePost = ({ post, id }: FirebasePost) => {
                 )}
               </div>
               <div className={styles.container_icon_repost}>
-                <BiRepost />
+                <BiRepost className={styles.footer_icon} />
               </div>
               <div className={styles.container_icon_heart}>
                 {hasLiked ? (
                   <FaHeart
                     fill="red"
                     onClick={likePost}
-                    style={{
-                      margin: "4px",
-                      height: "1.5em",
-                      width: "1.5em",
-                      padding: "4px",
-                    }}
+                    className={styles.heart_icon}
                   />
                 ) : (
-                  <FaHeart
-                    onClick={likePost}
-                    style={{
-                      margin: "4px",
-                      height: "1.5em",
-                      width: "1.5em",
-                      padding: "4px",
-                    }}
-                  />
+                  <FaHeart onClick={likePost} className={styles.heart_icon} />
                 )}
                 {likes.length - 1 > 0 && (
                   <span className={styles.like_counter}>

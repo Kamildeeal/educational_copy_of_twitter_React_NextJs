@@ -35,14 +35,14 @@ const FirebasePost = ({ post, id }: any) => {
       collection(db, "posts", id, "likes"),
       (snapshot: any) => setLikes(snapshot.docs)
     );
-  }, [db]);
+  }, [id]);
 
   useEffect(() => {
     const unsubscribe = onSnapshot(
       collection(db, "posts", id, "comments"),
       (snapshot: any) => setComments(snapshot.docs)
     );
-  }, [db]);
+  }, [id]);
 
   useEffect(() => {
     setHasLiked(
@@ -113,7 +113,13 @@ const FirebasePost = ({ post, id }: any) => {
             <div className={styles.post_user_container}>
               <p className={styles.text}>{post?.text}</p>
             </div>
-            <img src={post?.image} className={styles.uploadedImage} />
+            <Image
+              className={styles.uploadedImage}
+              src={post?.image}
+              alt="user-post-img"
+              width={400}
+              height={400}
+            />
 
             {/* {icons} */}
             <div className={styles.icons}>

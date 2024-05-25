@@ -1,5 +1,6 @@
 .post_box {
   border: 1px solid #e5e5e5;
+  min-width: 290px;
 }
 
 .post_box:hover {
@@ -10,6 +11,7 @@
   flex-direction: row;
   padding: 0.75rem;
   cursor: pointer;
+  min-width: 300px;
   border-bottom: 1px solid #e5e5e5;
 }
 
@@ -63,6 +65,7 @@
 
 .uploadedImage {
   max-width: 516px;
+  min-width: 210px;
   width: 100%;
   height: auto;
   border-radius: 10px;
@@ -129,11 +132,73 @@
   background-color: rgba(8, 8, 8, 0.5);
   z-index: 1000;
 }
+.heart_icon {
+  margin: 4px;
+  height: 1.5em;
+  width: 1.5em;
+  padding: 4px;
+  cursor: pointer;
+
+  @media screen and (max-width: 452px) {
+    height: 1.25em;
+    width: 1.25em;
+  }
+}
 
 @media screen and (max-width: 700px) {
   .uploadedImage {
     width: 100%;
     height: auto;
     border-radius: 10px;
+  }
+}
+
+@media screen and (max-width: 452px) {
+  .timestamp {
+    margin-left: 5px;
+  }
+  .user_styles {
+    font-size: 1rem;
+  }
+
+  .userNick,
+  .email,
+  .timestamp {
+    font-size: 0.8rem;
+  }
+  .dots {
+    display: none;
+  }
+
+  .icons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 14px;
+    font-size: 1.15rem;
+    color: rgb(87, 86, 86);
+    padding: 4px;
+    width: 100%;
+  }
+
+  .image_user_container {
+    display: flex;
+    flex-direction: row;
+    padding: 0.75rem;
+    cursor: pointer;
+    min-width: 300px;
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  .user_info_container {
+    display: flex;
+    flex-direction: column;
+    margin: auto 5px;
+  }
+
+  .footer_icon {
+    font-size: 1.4rem;
+  }
+  .icon_chat {
+    font-size: 1.2rem;
   }
 }

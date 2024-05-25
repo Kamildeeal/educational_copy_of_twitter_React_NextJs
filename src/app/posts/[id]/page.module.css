@@ -27,14 +27,14 @@
   align-self: flex-start;
   position: sticky;
   top: 0;
+  width: 100%;
 }
 
 .post_header {
-  width: 610px;
   display: flex;
-  justify-content: space-between;
-  margin-top: 30px;
-  align-items: center;
+  max-width: 592px;
+  width: 100%;
+  justify-content: space-around;
 }
 
 .post_header_left_arrow {
@@ -83,4 +83,14 @@
 }
 .center_button_logout:hover {
   background-color: rgba(19, 20, 20, 0.452);
+}
+
+@media screen and (max-width: 770px) {
+  .left_wing,
+  .right_wing {
+    display: none;
+  }
+  .center {
+    padding: 10px;
+  }
 }
