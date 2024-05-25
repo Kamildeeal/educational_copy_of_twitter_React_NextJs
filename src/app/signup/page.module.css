@@ -1,15 +1,31 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+.wrapperAll {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(140deg, #808080de, rgba(32, 32, 32, 0.76));
+  margin: 0;
+  padding: 10px;
+  box-sizing: border-box;
+  min-height: 100vh;
+  min-width: 300px;
+  width: 100%;
+  float: left;
+  justify-content: center;
+  align-items: center;
+}
+
 .modal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgb(158, 153, 153);
+  background-color: #f0f0f0;
   border-radius: 8px;
   padding: 0px;
   max-width: 600px;
   width: 100%;
-  height: 660px;
+  min-height: 680px;
+  height: auto;
   overflow: auto;
+  border: 2px solid rgba(0, 0, 0, 0.493);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.6);
+  overflow-x: hidden;
 }
 
 .form {
@@ -18,20 +34,24 @@
   align-items: center;
 }
 
-.overlay {
-  background-color: rgba(0, 0, 0, 0.247);
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 2;
-}
-
 .header {
   display: flex;
   align-items: center;
   height: 53px;
   justify-content: center;
+  position: relative;
+}
+
+.image {
+  filter: brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(0%)
+    hue-rotate(0deg) brightness(0%) contrast(100%);
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.image:hover {
+  filter: brightness(0) saturate(100%) invert(16%) sepia(90%) saturate(3362%)
+    hue-rotate(187deg) brightness(95%) contrast(101%);
 }
 
 .close_btn {
@@ -61,11 +81,18 @@
 .textField {
   max-width: 300px;
   width: 100%;
-  /* min-width: 150px; */
   height: 15px;
   border-radius: 8px;
   margin: 25px;
-  margin-right: 75px;
+  margin-top: 30px;
+  max-width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.customTextField input {
+  width: 300px;
 }
 
 .buttonLoginWith,
@@ -77,7 +104,6 @@
   min-height: 36px;
   outline-style: none;
   margin-top: 10px;
-  margin-left: 15px;
   cursor: pointer;
   width: 100%;
   flex: 0 0 auto;
@@ -109,7 +135,6 @@
   background-color: black;
   color: white;
   font-size: 1.07rem;
-  margin: 20px;
   transition: 0.15s ease-in-out;
   margin-top: 100px;
 }
@@ -159,4 +184,34 @@
   width: 100vw;
   height: 100vh;
   background-color: rgba(8, 8, 8, 0.5);
+}
+
+.footer_kam {
+  font-family: "Roboto", sans-serif;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: black;
+  margin: 16px 0;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  font-size: 0.8rem;
+  position: relative;
+  top: 60px;
+
+  padding: 0px;
+}
+
+@media only screen and (max-width: 400px) {
+  .customTextField input {
+    width: 200px;
+    height: 20px;
+  }
+  .buttonNext {
+    max-width: 240px;
+    width: 100%;
+    margin-top: 80px;
+  }
+  .modal h2 {
+    font-size: 1.7rem;
+  }
 }

@@ -234,6 +234,23 @@
     sans-serif;
 }
 
+.buttonLoginWith {
+  position: relative;
+}
+
+.buttonLoginWith > span {
+  font-size: 0.6rem;
+  color: grey;
+  position: absolute;
+  right: 10px;
+}
+.buttonLoginWith > span {
+  font-size: 0.6rem;
+  color: grey;
+  position: absolute;
+  right: 10px;
+}
+
 .buttonLogin p {
   color: rgb(29, 155, 240);
   font-size: 15px;
@@ -336,5 +353,10 @@
   .desc {
     max-width: 260px;
     width: 100%;
+  }
+
+  .contentContainer,
+  .imageContainer {
+    padding-left: 10px;
   }
 }

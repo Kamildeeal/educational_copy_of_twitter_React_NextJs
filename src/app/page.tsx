@@ -51,8 +51,20 @@ const EntryScreen = () => {
                 <h1>The latest news from around the world</h1>
               </div>
               <h3>Join today.</h3>
-              <div className={styles.buttonLoginWith}>Login with google</div>
-              <div className={styles.buttonLoginWith}>Login with apple</div>
+              <div className={styles.buttonLoginWith}>
+                Login with google{" "}
+                <span>
+                  - currently <br />
+                  disabled
+                </span>
+              </div>
+              <div className={styles.buttonLoginWith}>
+                Login with apple{" "}
+                <span>
+                  - currently <br />
+                  disabled
+                </span>
+              </div>
               <div className={styles.orContainer}>
                 <span className={styles.spanOr}></span>
                 <p>or</p>

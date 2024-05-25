@@ -57,92 +57,104 @@ const LoginModal = () => {
           />
         </div>
       )}
-      <div className={styles.modal}>
-        <div className={styles.modal_content}>
-          <div className={styles.header}>
-            <button
-              className={styles.close_btn}
-              onClick={() => router.push("/")}
-            >
-              ✖
-            </button>
-            <Image
-              src="/logo.svg"
-              className={styles.image}
-              alt="logo"
-              width={30}
-              height={30}
-            />
-          </div>
-          <div className={styles.body}>
-            <h2>Login to X service</h2>
-            <div className={styles.buttonLoginWith}>Login with google</div>
-            <div
-              className={styles.buttonLoginWith}
-              onClick={() => router.push("/home")}
-            >
-              Login with apple
-            </div>
-            <div className={styles.orContainer}>
-              <span className={styles.spanOr}></span>
-              <p className={styles.spanP}>or</p>
-              <span className={styles.spanOr}></span>
-            </div>
-
-            <div className={styles.form}>
-              <div className={styles.textField}>
-                <TextField
-                  type="mail"
-                  className={styles.textField}
-                  id="outlined-basic"
-                  onChange={(e) => setEmail(e.target.value)}
-                  value={email}
-                  variant="outlined"
-                  label="Email address"
-                />
-              </div>
-              <div className={styles.textField}>
-                <TextField
-                  type="password"
-                  className={styles.textField}
-                  id="outlined-basic"
-                  onChange={(e) => setPassword(e.target.value)}
-                  value={password}
-                  variant="outlined"
-                  label="Password"
-                />
-              </div>
+      <div className={styles.wrapperAll}>
+        <div className={styles.modal}>
+          <div className={styles.modal_content}>
+            <div className={styles.header}>
               <button
-                className={styles.buttonNext}
-                type="submit"
-                onClick={handleSubmit}
+                className={styles.close_btn}
+                onClick={() => router.push("/")}
               >
-                Next
+                ✖
               </button>
+              <Image
+                src="/logo.svg"
+                className={styles.image}
+                alt="logo"
+                width={30}
+                height={30}
+              />
             </div>
-
-            <div className={styles.buttonLoginWith}>Forgot password?</div>
-            <p className={styles.footer}>
-              You dont have accout yet? {""}
-              <span
-                className={styles.register}
-                onClick={() => {
-                  setLoading(true);
-                  router.push("/signup");
-                }}
+            <div className={styles.body}>
+              <h2>Login to X service</h2>
+              <div className={styles.buttonLoginWith}>
+                Login with google{" "}
+                <span>
+                  - currently <br /> disabled
+                </span>
+              </div>
+              <div
+                className={styles.buttonLoginWith}
+                onClick={() => router.push("/home")}
               >
-                Register
-              </span>
-            </p>
+                Login with apple{" "}
+                <span>
+                  - currently <br />
+                  disabled
+                </span>
+              </div>
+              <div className={styles.orContainer}>
+                <span className={styles.spanOr}></span>
+                <p className={styles.spanP}>or</p>
+                <span className={styles.spanOr}></span>
+              </div>
+
+              <div className={styles.form}>
+                <div className={styles.textField}>
+                  <TextField
+                    type="mail"
+                    className={styles.customTextField}
+                    id="outlined-basic"
+                    onChange={(e) => setEmail(e.target.value)}
+                    value={email}
+                    variant="outlined"
+                    label="Email address"
+                  />
+                </div>
+                <div className={styles.textField}>
+                  <TextField
+                    type="password"
+                    className={styles.customTextField}
+                    id="outlined-basic"
+                    onChange={(e) => setPassword(e.target.value)}
+                    value={password}
+                    variant="outlined"
+                    label="Password"
+                  />
+                </div>
+                <button
+                  className={styles.buttonNext}
+                  type="submit"
+                  onClick={handleSubmit}
+                >
+                  Next
+                </button>
+              </div>
+
+              <div className={styles.buttonLoginWith}>Forgot password?</div>
+              <p className={styles.footer}>
+                You dont have accout yet? {""}
+                <span
+                  className={styles.register}
+                  onClick={() => {
+                    setLoading(true);
+                    router.push("/signup");
+                  }}
+                >
+                  Register
+                </span>
+              </p>
+              <p className={styles.footer_kam}>Kam-Tweet &copy; 2024</p>
+            </div>
+          </div>
+          <div className={styles.helper}>
+            Example email: <b>test@test.com</b>
+            <br></br>
+            Example password: <b>test123</b>
+            <br></br>
+            or create an account
           </div>
         </div>
-      </div>
-      <div className={styles.helper}>
-        Example email: <b>test@test.com</b>
-        <br></br>
-        Example password: <b>test123</b>
-        <br></br>
-        or create an account
       </div>
     </div>
   );
