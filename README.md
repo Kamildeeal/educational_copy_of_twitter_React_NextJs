@@ -15,7 +15,7 @@ This project is built with the following technologies:
 - **Front-end:**
   - HTML
   - CSS
-  - JavaScript
+  - TypeScript
   - React.js
   - NextJS
 
