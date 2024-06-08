@@ -1,15 +1,4 @@
 # Educational Copy of Twitter
-
-## Table of Contents
-- [Introduction](#introduction)
-- [Features](#features)
-- [Technologies](#technologies)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
-
 ## Introduction
 Educational Copy of Twitter is a simplified, educational version of the popular social media platform Twitter. This project is designed to help learners understand the fundamental concepts of web development, database management, and front-end/backend integration. 
 
@@ -28,10 +17,11 @@ This project is built with the following technologies:
   - CSS
   - JavaScript
   - React.js
+  - NextJS
 
 - **Back-end:**
   - Node.js
-  - 
+  
 - **Database:**
   - Firebase
 
