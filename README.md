@@ -40,6 +40,6 @@ git clone https://github.com/yourusername/educational_copy_of_twitter.git
 cd educational_copy_of_twitter
 npm install
 ```
-For save reasons I keep my .env file for me, feel free to try this project live:
+For safty reasons I keep my .env file for me, please feel free to try this project live:
 https://educational-copy-of-twitter.vercel.app/
 
