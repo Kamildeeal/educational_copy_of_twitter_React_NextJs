@@ -19,7 +19,7 @@ import { userState } from "@/atoms/userAtom";
 export default function MiddleTestInput() {
   const [input, setInput] = useState("");
   const filePickerRef = useRef<any>(null);
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedFile, setSelectedFile] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const currentUser = useRecoilValue(userState);
 
@@ -60,17 +60,53 @@ export default function MiddleTestInput() {
   };
 
   const reader = new FileReader();
-  const addImageToPost = (e: any) => {
-    setLoading(true);
-    if (e.target.files[0]) {
-      reader.readAsDataURL(e.target.files[0]);
-      reader.onload = async (readerEvent: any) => {
-        const fileData = await readerEvent.target.result;
-        setSelectedFile(fileData);
+
+  const resizeImage = (fileData: string): Promise<string> => {
+    return new Promise((resolve) => {
+      const img = document.createElement("img");
+      img.src = fileData;
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+        const maxSize = 500;
+        let width = img.width;
+        let height = img.height;
+
+        if (width > height) {
+          if (width > maxSize) {
+            height = Math.round((height *= maxSize / width));
+            width = maxSize;
+          }
+        } else {
+          if (height > maxSize) {
+            width = Math.round((width *= maxSize / height));
+            height = maxSize;
+          }
+        }
+        canvas.width = width;
+        canvas.height = height;
+        ctx?.drawImage(img, 0, 0, width, height);
+        const resizedDataUrl = canvas.toDataURL("image/jpeg");
+        resolve(resizedDataUrl);
       };
-      // console.log(selectedFile);
+    });
+  };
+
+  const addImageToPost = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+
+    if (file && file.size <= 5 * 1024 * 1024) {
+      setLoading(true);
+      reader.readAsDataURL(file);
+      reader.onload = async (readerEvent) => {
+        const fileData = readerEvent.target?.result as string;
+        const resizedFileData = await resizeImage(fileData);
+        setSelectedFile(resizedFileData);
+        setLoading(false);
+      };
+    } else {
+      alert("File size is to big! Maximum size is 5 MB!");
     }
-    setLoading(false);
   };
 
   return (

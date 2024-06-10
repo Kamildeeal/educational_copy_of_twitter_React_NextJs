@@ -46,7 +46,6 @@ const HomePage = ({ newsResults }: any) => {
             if (docSnap.exists()) {
               const userData = docSnap.data() as UserData;
               setCurrentUser(userData);
-              // console.log(currentUser);
             }
           };
           fetchUser();
@@ -57,9 +56,7 @@ const HomePage = ({ newsResults }: any) => {
     });
     return () => unsubscribe();
   }, [loading, setCurrentUser]);
-  // question
-  // should I add cleanup function after this compontent "unmounts"(render another compontent)??
-  // like: return () => unsubscribe(); // Cleanup function
+
   if (loading) {
     return (
       <div>
