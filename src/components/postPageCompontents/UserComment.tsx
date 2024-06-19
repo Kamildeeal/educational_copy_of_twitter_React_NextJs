@@ -30,7 +30,7 @@ export default function UserComment({
       collection(db, "posts", currentPostId, "comments", commentId, "likes"),
       (snapshot: any) => setLikes(snapshot.docs)
     );
-  }, [db, commentId, currentPostId]);
+  }, [commentId, currentPostId]);
 
   useEffect(() => {
     setHasLiked(
@@ -119,14 +119,6 @@ export default function UserComment({
             </div>
             {/* {icons} */}
             <div className={styles.icons}>
-              {/* <div className={styles.container_icon_heart}>
-                <FaRocketchat
-                  onClick={() => {
-                    setOpen(!open);
-                    setPostId(currentPostId);
-                  }}
-                />
-              </div> */}
               <BiRepost />
               <div className={styles.container_icon_heart}>
                 {hasLiked ? (
