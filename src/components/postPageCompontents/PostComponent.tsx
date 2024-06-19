@@ -28,6 +28,7 @@ const FirebasePost = ({ post, id }: any) => {
   const [postId, setPostId] = useRecoilState(postIdState);
   const [currentUser, setCurrentUser] = useRecoilState(userState);
   const [comments, setComments] = useState([]);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -73,8 +74,26 @@ const FirebasePost = ({ post, id }: any) => {
     }
   }
 
+  const togglePopup = () => {
+    setIsPopupOpen(!isPopupOpen);
+  };
+
   return (
     <div>
+      {isPopupOpen && (
+        <div className={styles.container_image_popup} onClick={togglePopup}>
+          <div className={styles.imgContainer}>
+            <Image
+              src={post?.image}
+              alt="user-post-img"
+              layout="fill"
+              objectFit="contain"
+              className={styles.popupImage}
+            />
+          </div>
+          <span onClick={togglePopup}>&times;</span>
+        </div>
+      )}
       <div className={styles.post_box}>
         <div className={styles.image_user_container}>
           {/* user image */}
@@ -119,6 +138,7 @@ const FirebasePost = ({ post, id }: any) => {
               alt="user-post-img"
               width={400}
               height={400}
+              onClick={togglePopup}
             />
 
             {/* {icons} */}

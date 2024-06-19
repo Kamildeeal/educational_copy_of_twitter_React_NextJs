@@ -241,8 +241,7 @@
 
 @media only screen and (max-width: 720px) {
   .helper {
-    top: -18%;
-
+    top: 20%;
     right: 0%;
   }
 }
