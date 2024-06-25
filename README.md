@@ -1,6 +1,6 @@
 # Educational Copy of Twitter
 ## Introduction
-Educational Copy of Twitter is a simplified, educational version of the popular social media platform Twitter. This project is designed to help learners understand the fundamental concepts of web development, database management, and front-end/backend integration. 
+Educational Copy of Twitter is a simplified, educational version of the popular social media platform Twitter. This project is designed to understand the fundamental concepts of web development, database management, and front-end/backend integration. 
 
 ## Features
 - User authentication (sign up, login, logout)
