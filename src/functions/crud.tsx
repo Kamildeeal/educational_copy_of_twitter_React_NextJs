@@ -63,7 +63,6 @@ export const updateData = async (collection: any, id: any, data: any) => {
   }
 };
 
-//add delete check "are you sure to delete this file?"
 export const deleteData = async (collection: any, id: any) => {
   try {
     const docRef = doc(db, collection, id);

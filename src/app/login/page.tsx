@@ -12,10 +12,8 @@ import TextField from "@mui/material/TextField";
 import { SyncLoader } from "react-spinners";
 
 const LoginModal = () => {
-  const { currentUser, setCurrentUser, setUser } = useUserAuth();
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("test@test.com");
+  const [password, setPassword] = useState("test123");
   const [loading, setLoading] = useState(false);
 
   const router = useRouter();
@@ -40,8 +38,8 @@ const LoginModal = () => {
         showConfirmButton: true,
       });
     } finally {
-      setLoading(false);
       if (runfinally) router.push("/home");
+      setLoading(false);
     }
   };
 

@@ -1,9 +1,5 @@
 "use client";
-
-import { auth, db } from "@/firebase/config";
-import { onAuthStateChanged } from "firebase/auth";
-import { doc, onSnapshot } from "firebase/firestore";
-import React, { PropsWithChildren, useEffect, useState } from "react";
+import React, { PropsWithChildren, useState } from "react";
 import { RecoilRoot } from "recoil";
 
 type State = {
