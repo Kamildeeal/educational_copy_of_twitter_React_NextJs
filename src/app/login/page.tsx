@@ -36,10 +36,10 @@ const LoginModal = () => {
         title: "Error!",
         text: "Invalid password or email address!",
         showConfirmButton: true,
-      });
+      }).then(() => setLoading(false));
     } finally {
       if (runfinally) router.push("/home");
-      setLoading(false);
+      // setLoading(false);
     }
   };
 

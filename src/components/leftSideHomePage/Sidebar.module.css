@@ -34,11 +34,15 @@
 
 .icons_container span {
   display: flex;
-  margin-top: 20px;
+  margin-top: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   cursor: pointer;
   width: 210px;
   text-align: right;
   font-size: 23px;
+  padding-left: 3px;
+  padding-right: 3px;
 }
 
 .icons_container span p {
@@ -49,6 +53,7 @@
   background: rgba(0, 0, 0, 0.089);
   border-radius: 6px;
   box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.205);
+  transition-duration: 150ms;
 }
 
 .icons_container b {

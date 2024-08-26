@@ -57,11 +57,7 @@ export default function CommentModal() {
                 <h4 className={styles.user_styles}>
                   {post?.data()?.firstName}
                 </h4>
-                <span className={styles.userNick}>
-                  {" "}
-                  {`@`}
-                  {post?.data()?.email}
-                </span>
+                <span className={styles.userNick}> {post?.data()?.email}</span>
                 <span className={styles.timestamp}>
                   ・<Moment fromNow>{post?.data()?.timestamp?.toDate()}</Moment>
                 </span>
